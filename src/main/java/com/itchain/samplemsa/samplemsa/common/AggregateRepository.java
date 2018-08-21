@@ -16,7 +16,7 @@ public class AggregateRepository<T extends Aggregate> {
 
     }
 
-    public T getAggregate(String id){
+    public T findById(String id){
         List<Event> eventList = eventRepository.load(id);
         Class<T> mClass = (Class<T>) ClassUtils.getReclusiveGenericClass(getClass(), 0);
         if (mClass != null) {
@@ -29,7 +29,7 @@ public class AggregateRepository<T extends Aggregate> {
         return null;
     }
 
-    public void saveAggregate(T aggregate){
+    public void save(T aggregate){
         aggregate.getEventList().forEach(event -> eventRepository.save(event));
     }
 }
