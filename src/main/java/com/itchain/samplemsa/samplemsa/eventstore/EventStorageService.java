@@ -6,9 +6,12 @@ import com.itchain.samplemsa.samplemsa.eventstore.domain.EntityWithIdAndEventLis
 import com.itchain.samplemsa.samplemsa.eventstore.domain.Store;
 import com.itchain.samplemsa.samplemsa.eventstore.exception.EventIDEmptyException;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+@Component
 public class EventStorageService implements EventRepository {
     @Autowired
     Store store;

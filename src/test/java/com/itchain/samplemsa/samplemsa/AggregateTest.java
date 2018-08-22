@@ -8,7 +8,8 @@ import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
 public class AggregateTest {
-    DeliveryRepository deliveryRepository = new DeliveryRepository(new EventRepositoryImpl());
+    @Autowired
+    DeliveryRepository deliveryRepository;
 
     @Test
     public void TestOnEvent(){

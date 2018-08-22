@@ -1,11 +1,17 @@
 package com.itchain.samplemsa.samplemsa;
 
 import com.itchain.samplemsa.samplemsa.common.Event;
+import lombok.*;
 
-public class SampleEvent extends Event {
+@NoArgsConstructor
+@RequiredArgsConstructor
+@Getter
+@Setter
+public class SampleEvent implements Event {
+    @NonNull
     private String ID;
     @Override
     public String getID() {
-        return null;
+        return this.ID;
     }
 }
