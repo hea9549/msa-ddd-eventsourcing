@@ -12,7 +12,7 @@ public class DeliveryInfoChangedEvent implements Event {
     private DeliverStatus status;
 
     @Override
-    public String GetID() {
+    public String getID() {
         return id;
     }
 

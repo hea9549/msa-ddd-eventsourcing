@@ -4,7 +4,7 @@ import com.itchain.samplemsa.samplemsa.common.Event;
 
 public class SecondEvent implements Event {
     @Override
-    public String GetID() {
+    public String getID() {
         return null;
     }
 }

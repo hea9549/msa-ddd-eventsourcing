@@ -12,8 +12,8 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 import java.util.List;
+import java.util.UUID;
 
-@AllArgsConstructor
 @Getter
 public class Delivery extends Aggregate {
 
@@ -25,7 +25,8 @@ public class Delivery extends Aggregate {
     private String startDate;
     private DeliverStatus deliverStatus;
 
-    public Delivery(){
+    public Delivery(String productId,String buyerId,String buyDate,String startDate){
+        apply(new DeliveryInfoCreatedEvent(UUID.randomUUID().toString(),productId,buyerId,buyDate,startDate));
     }
 
     public Delivery(List<Event> events){
@@ -39,15 +40,17 @@ public class Delivery extends Aggregate {
 
     @OnEvent
     public void onDeliveryCreatedEvent(DeliveryInfoCreatedEvent event){
+        this.id = event.getID();
         this.buyDate = event.getBuyDate();
         this.buyerId = event.getBuyerId();
         this.productId = event.getProductId();
         this.startDate = event.getStartDate();
+        this.deliverStatus = DeliverStatus.PREPARE;
     }
 
     @OnEvent
     public void onDeliveryChangeEvent(DeliveryInfoChangedEvent event){
-        if(this.id == null || !this.id.equals(event.GetID())){
+        if(this.id == null || !this.id.equals(event.getID())){
             throw new IllegalArgumentException();
         }
         this.deliverStatus = event.getStatus();
