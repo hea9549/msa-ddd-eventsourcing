@@ -1,8 +1,8 @@
-package com.itchain.samplemsa.samplemsa.product.event;
+package com.itchain.samplemsa.samplemsa.product.domain.event;
 
 import com.itchain.samplemsa.samplemsa.common.Event;
 
-public class ProductSalesChangedEvent extends Event {
+public class ProductSalesChangedEvent implements Event {
 
 
     String productId;
@@ -11,6 +11,9 @@ public class ProductSalesChangedEvent extends Event {
     public ProductSalesChangedEvent(String productId, int sales) {
         this.productId = productId;
         this.sales = sales;
+    }
+    public int getSales(){
+        return this.sales;
     }
 
     @Override

@@ -1,22 +1,18 @@
-package com.itchain.samplemsa.samplemsa.product.event;
+package com.itchain.samplemsa.samplemsa.product.domain.event;
 
 import com.itchain.samplemsa.samplemsa.common.Event;
 import lombok.Getter;
 
 @Getter
-public class ProductUpdateEvent extends Event {
-    private String id;
+public class ProductUpdateEvent implements Event {
     private String productName;
     private String description;
     private int price;
-    private int stock;
 
-    public ProductUpdateEvent(String id, String productName, String description, int price, int stock) {
-        this.id = id;
+    public ProductUpdateEvent(String productName, String description, int price) {
         this.productName = productName;
         this.description = description;
         this.price = price;
-        this.stock = stock;
     }
 
     @Override

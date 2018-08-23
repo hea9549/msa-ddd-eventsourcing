@@ -3,14 +3,16 @@ package com.itchain.samplemsa.samplemsa.product.domain;
 import com.itchain.samplemsa.samplemsa.common.Aggregate;
 import com.itchain.samplemsa.samplemsa.common.Event;
 import com.itchain.samplemsa.samplemsa.common.OnEvent;
-import com.itchain.samplemsa.samplemsa.product.event.*;
+import com.itchain.samplemsa.samplemsa.product.domain.event.*;
 import lombok.Getter;
+import org.springframework.data.annotation.Id;
 
 import java.util.List;
 
 @Getter
 public class Product extends Aggregate {
 
+    @Id
     private String id;
     private String productName;
     private String description;
@@ -33,6 +35,37 @@ public class Product extends Aggregate {
         super(eventList);
     }
 
+    public void soldProduct(int num) {
+        if (stock < num && id != null) {
+            ProductStockChangedEvent stockChangedEvent = new ProductStockChangedEvent(id, stock - num);
+            ProductSalesChangedEvent salesChangedEvent = new ProductSalesChangedEvent(id, sales + num);
+            this.apply(stockChangedEvent);
+            this.apply(salesChangedEvent);
+        }
+    }
+
+    public void addProductStock(int num) {
+        if (id != null) {
+            num += this.stock;
+            ProductStockChangedEvent event = new ProductStockChangedEvent(id, num);
+            this.apply(event);
+        }
+    }
+
+    public void deleteProduct() {
+        if (id != null) {
+            ProductDeletedEvent deletedEvent = new ProductDeletedEvent(id);
+            this.apply(deletedEvent);
+        }
+    }
+
+    public void updateProduct(String productName, String description, int price) {
+        if (id != null) {
+            ProductUpdateEvent productUpdateEvent = new ProductUpdateEvent(productName, description, price);
+            this.apply(productUpdateEvent);
+        }
+    }
+
     @OnEvent
     private void handleCreatedEvent(ProductCreatedEvent event) {
 
@@ -45,22 +78,7 @@ public class Product extends Aggregate {
     }
 
     @OnEvent
-    private void handleSoldEvent(ProductStockChangedEvent event) {
-        this.stock = event.getStock();
-    }
-
-    public void sold(int num) {
-        if (stock > num) {
-            return;
-        }
-        ProductStockChangedEvent stockChangedEvent = new ProductStockChangedEvent(id, stock - num);
-        ProductSalesChangedEvent salesChangedEvent = new ProductSalesChangedEvent(id, sales + num);
-        this.apply(stockChangedEvent);
-        this.apply(salesChangedEvent);
-    }
-
-    @OnEvent
-    private void handleDeleteEvent() {
+    private void handleDeleteEvent(ProductDeletedEvent event) {
         this.id = null;
         this.productName = null;
         this.description = null;
@@ -69,13 +87,21 @@ public class Product extends Aggregate {
         this.sales = 0;
     }
 
-    public void delete() {
-        ProductDeletedEvent deletedEvent = new ProductDeletedEvent(id);
-        this.apply(deletedEvent);
+    @OnEvent
+    public void handleUpdateEvent(ProductUpdateEvent event) {
+        this.productName = event.getProductName();
+        this.description = event.getDescription();
+        this.price = event.getPrice();
     }
 
-    public void update(String id, String productName, String description, int price, int sales) {
-        ProductUpdateEvent productUpdateEvent = new ProductUpdateEvent(id, productName, description, price, sales);
+    @OnEvent
+    private void handleSoldEvent(ProductStockChangedEvent event) {
+        this.stock = event.getStock();
+    }
+
+    @OnEvent
+    private void handleSalesEvent(ProductSalesChangedEvent event) {
+        this.stock = event.getSales();
     }
 
 

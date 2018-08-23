@@ -1,11 +1,11 @@
-package com.itchain.samplemsa.samplemsa.product.event;
+package com.itchain.samplemsa.samplemsa.product.domain.event;
 
 
 import com.itchain.samplemsa.samplemsa.common.Event;
 import lombok.Getter;
 
 @Getter
-public class ProductStockChangedEvent extends Event {
+public class ProductStockChangedEvent implements Event {
 
     String aggregateId;
     int stock;

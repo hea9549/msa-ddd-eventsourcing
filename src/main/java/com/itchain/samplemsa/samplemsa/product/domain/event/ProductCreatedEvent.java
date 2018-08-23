@@ -1,10 +1,10 @@
-package com.itchain.samplemsa.samplemsa.product.event;
+package com.itchain.samplemsa.samplemsa.product.domain.event;
 
 import com.itchain.samplemsa.samplemsa.common.Event;
 import lombok.Getter;
 
 @Getter
-public class ProductCreatedEvent extends Event {
+public class ProductCreatedEvent implements Event {
 
     private String id;
     private String productName;

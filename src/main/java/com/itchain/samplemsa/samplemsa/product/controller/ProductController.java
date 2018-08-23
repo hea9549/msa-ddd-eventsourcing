@@ -1,7 +1,7 @@
 package com.itchain.samplemsa.samplemsa.product.controller;
 
-import com.itchain.samplemsa.samplemsa.product.domain.ProductDTO;
-import com.itchain.samplemsa.samplemsa.product.service.ProductServiceImpl;
+import com.itchain.samplemsa.samplemsa.product.domain.dto.ProductDTO;
+import com.itchain.samplemsa.samplemsa.product.service.ProductApplicationServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -18,33 +18,49 @@ import java.util.List;
 public class ProductController {
 
     @Autowired
-    ProductServiceImpl productService;
+    ProductApplicationServiceImpl productService;
 
-    @RequestMapping(value = "/product/{productId}/{productName}/{description}/{price}/{stock}/{sales}/add_product", method = RequestMethod.PUT)
-    public void addProduct(@PathVariable String productId, String productName, String description, int price, int stock, int sales) {
-        productService.addProduct(productId, productName, description, price, stock, sales);
+    @RequestMapping(value = "/product/addProduct/{productId}/{productName}/{description}/{price}/{stock}", method = RequestMethod.PUT)
+    public void addProduct(@PathVariable String productId, @PathVariable String productName,
+                           @PathVariable String description, @PathVariable int price, @PathVariable int stock) {
+        productService.addProduct(productId, productName, description, price, stock);
     }
 
-    @RequestMapping(value = "/product/{productId}/delete_product", method = RequestMethod.DELETE)
+    @RequestMapping(value = "/product/deleteProduct/{productId}", method = RequestMethod.DELETE)
     public void deleteProduct(@PathVariable String productId) {
         productService.deleteProduct(productId);
     }
 
-    @RequestMapping(value = "/product/{productId}/{num}/sold_product", method = RequestMethod.POST)
-    public void soldProduct(String productId, int soldNum) {
+    @RequestMapping(value = "/product/soldProduct/{productId}/{soldNum}", method = RequestMethod.POST)
+    public void soldProduct(@PathVariable String productId, @PathVariable int soldNum) {
         productService.soldProduct(productId, soldNum);
     }
 
-    @RequestMapping(value = "{num}/best_product", method = RequestMethod.POST)
-    public List<ProductDTO> getBestProduct(int num) {
+    @RequestMapping(value = "/product/updateProduct/{productId}/{productName}/{description}/{price}", method = RequestMethod.POST)
+    public void updateProduct(@PathVariable String productId, @PathVariable String productName,
+                              @PathVariable String description, @PathVariable int price) {
+        productService.updateProduct(productId, productName, description, price);
+
+    }
+
+    @RequestMapping(value = "/product/addStock/{productId}/{additionalStockNum}", method = RequestMethod.POST)
+    public void addStock(@PathVariable String productId,@PathVariable int additionalStockNum) {
+        productService.addProductStock(productId, additionalStockNum);
+    }
+
+    @RequestMapping(value = "/product/best_product/{num}", method = RequestMethod.GET)
+    public List<ProductDTO> getBestProduct(@PathVariable int num) {
         return productService.getBestProduct(num);
+    }
+
+    @RequestMapping(value = "/product/getAllProducts", method = RequestMethod.GET)
+    public List<ProductDTO> getAllProducts() {
+        return productService.getProducts();
     }
 
     @RequestMapping(value = "/category", method = RequestMethod.GET)
     public List<ProductDTO> getCategoryProduct(String category) {
-        //List<ProductDTO> productList = productService.getProductsByCategory(category);
-        List<ProductDTO> productList = new ArrayList<>();
-        return productList;
+        return productService.getProductsByCategory(category);
     }
 
 

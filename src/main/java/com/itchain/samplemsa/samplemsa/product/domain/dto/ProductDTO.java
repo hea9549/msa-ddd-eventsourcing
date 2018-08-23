@@ -1,5 +1,6 @@
-package com.itchain.samplemsa.samplemsa.product.domain;
+package com.itchain.samplemsa.samplemsa.product.domain.dto;
 
+import com.itchain.samplemsa.samplemsa.product.domain.Product;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 

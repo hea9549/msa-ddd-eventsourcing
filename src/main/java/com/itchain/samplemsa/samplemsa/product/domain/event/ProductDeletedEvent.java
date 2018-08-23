@@ -1,8 +1,8 @@
-package com.itchain.samplemsa.samplemsa.product.event;
+package com.itchain.samplemsa.samplemsa.product.domain.event;
 
 import com.itchain.samplemsa.samplemsa.common.Event;
 
-public class ProductDeletedEvent extends Event {
+public class ProductDeletedEvent implements Event {
 
     String productId;
     public ProductDeletedEvent(String productId){
