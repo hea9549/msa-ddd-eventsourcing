@@ -5,5 +5,5 @@ import com.google.gson.Gson;
 import java.util.Date;
 
 public abstract class Event {
-    abstract String getID();
+    abstract public String getID();
 }
