@@ -7,6 +7,7 @@ import com.itchain.samplemsa.samplemsa.common.EventRepository;
 import com.itchain.samplemsa.samplemsa.common.OnEvent;
 import com.itchain.samplemsa.samplemsa.delivery.domain.event.DeliveryInfoChangedEvent;
 import com.itchain.samplemsa.samplemsa.delivery.domain.event.DeliveryInfoCreatedEvent;
+import com.itchain.samplemsa.samplemsa.trade.domain.DeliverStatus;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;

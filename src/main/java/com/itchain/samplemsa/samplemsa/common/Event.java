@@ -6,5 +6,4 @@ import java.util.Date;
 
 public interface  Event {
     String getID();
-
 }
