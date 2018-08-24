@@ -12,5 +12,4 @@ public class SampleMsaApplicationTests {
     @Test
     public void contextLoads() {
     }
-
 }
