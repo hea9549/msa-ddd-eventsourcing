@@ -4,7 +4,7 @@ import com.itchain.samplemsa.samplemsa.common.Event;
 import lombok.Getter;
 
 @Getter
-public class CustomerAddedEvent extends Event {
+public class CustomerAddedEvent implements Event {
     private String id;
     private String pw;
     private String name;
