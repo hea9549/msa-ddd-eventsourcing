@@ -11,17 +11,13 @@ public class AggregateTest {
     DeliveryRepository deliveryRepository = new DeliveryRepository(new EventRepositoryImpl());
 
     @Test
-    public void TestOnEvent(){
+    public void TestOnEvent() {
         SampleAggregate aggregate = new SampleAggregate();
         aggregate.startSecondEvent();
     }
 
-    public void asdf(){
-        throw new RuntimeException();
-    }
-
     @Test
-    public void repoTest(){
+    public void repoTest() {
         Delivery delivery = new Delivery("1","1","today","startDate");
         delivery.changeStatus(DeliverStatus.DONE);
         deliveryRepository.save(delivery);
