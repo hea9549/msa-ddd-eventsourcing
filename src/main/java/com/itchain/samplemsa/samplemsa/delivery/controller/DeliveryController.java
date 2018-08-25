@@ -1,11 +1,11 @@
 //package com.itchain.samplemsa.samplemsa.delivery.controller;
 //
 //import com.itchain.samplemsa.samplemsa.delivery.domain.Delivery;
-//import com.itchain.samplemsa.samplemsa.delivery.domain.DeliverStatus;
+//import com.itchain.samplemsa.samplemsa.delivery.domain.TradeStatus;
 //import com.itchain.samplemsa.samplemsa.delivery.domain.dto.DeliveryDTO;
 //import com.itchain.samplemsa.samplemsa.delivery.domain.dto.TradeInfoDTO;
-//import com.itchain.samplemsa.samplemsa.delivery.service.DeliveryApplicationService;
-//import com.itchain.samplemsa.samplemsa.delivery.domain.QueryService;
+//import com.itchain.samplemsa.samplemsa.delivery.application.DeliveryApplicationService;
+//import com.itchain.samplemsa.samplemsa.delivery.domain.TradeService;
 //import org.springframework.web.bind.annotation.*;
 //
 //import java.util.List;
@@ -14,7 +14,7 @@
 //public class DeliveryController {
 //    // todo DI
 //    DeliveryApplicationService deliveryApplicationService;
-//    QueryService queryService;
+//    TradeService queryService;
 //
 //    @RequestMapping(value = "/deliveries",method = RequestMethod.POST)
 //    public DeliveryDTO newDeliveryInfo(@RequestParam String buyerId, @RequestParam String productId,
@@ -33,13 +33,13 @@
 //    @RequestMapping(value = "/deliveries/{deliveryId}",method = RequestMethod.GET)
 //    public DeliveryDTO getDeliveryInfo(@PathVariable String deliveryId){
 //        Delivery delivery =new Delivery();
-//        delivery.changeStatus(DeliverStatus.DONE);
+//        delivery.changeStatus(TradeStatus.DONE);
 //
 //        return queryService.getDeliverInfo(deliveryId);
 //    }
 //
 //    @RequestMapping(value = "/deliveries/{deliveryId}",method = RequestMethod.PUT)
-//    public DeliveryDTO changeDeliveryStatus(@PathVariable String deliveryId, @RequestParam DeliverStatus status){
+//    public DeliveryDTO changeDeliveryStatus(@PathVariable String deliveryId, @RequestParam TradeStatus status){
 //        Delivery delivery = deliveryApplicationService.changeDeliveryStatus(deliveryId,status);
 //        return new DeliveryDTO(delivery.GetID(), delivery.getProductId(), delivery.getBuyerId()
 //                , delivery.getBuyDate(), delivery.getStartDate(), delivery.getDeliverStatus());

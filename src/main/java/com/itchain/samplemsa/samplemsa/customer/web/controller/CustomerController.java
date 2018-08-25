@@ -1,8 +1,8 @@
-package com.itchain.samplemsa.samplemsa.customer.controller;
+package com.itchain.samplemsa.samplemsa.customer.web.controller;
 
 import com.itchain.samplemsa.samplemsa.customer.domain.CustomerInfo;
-import com.itchain.samplemsa.samplemsa.customer.domain.dto.CustomerDTO;
-import com.itchain.samplemsa.samplemsa.customer.service.CustomerApplicationService;
+import com.itchain.samplemsa.samplemsa.customer.domain.dto.CustomerInfoDTO;
+import com.itchain.samplemsa.samplemsa.customer.application.CustomerApplicationService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -18,17 +18,17 @@ public class CustomerController {
     }
 
     @RequestMapping(value = "/customers/register-customer/{customerInfo}", method = RequestMethod.POST)
-    public void registerCustomer(@RequestParam(required = true) CustomerDTO customerInfo) {
+    public void registerCustomer(@RequestParam(required = true) CustomerInfoDTO customerInfo) {
         customerService.registerCustomer(customerInfo.getId(), customerInfo.getPw(), customerInfo.getName(), customerInfo.getAddress());
     }
 
     @RequestMapping(value = "/customers/remove-customer/{customerInfo}", method = RequestMethod.POST)
-    public void withdrawCustomer(@RequestParam(required = true) CustomerDTO customerInfo) {
+    public void withdrawCustomer(@RequestParam(required = true) CustomerInfoDTO customerInfo) {
         customerService.withdrawCustomer(customerInfo.getId(), customerInfo.getPw());
     }
 
     @RequestMapping(value = "/customers/edit-customer/{customerInfo}", method = RequestMethod.POST)
-    public void updateCustomer(@RequestParam(required = true) CustomerDTO customerInfo) {
+    public void updateCustomer(@RequestParam(required = true) CustomerInfoDTO customerInfo) {
         customerService.updateCustomer(customerInfo.getId(), customerInfo.getPw(), customerInfo.getName(), customerInfo.getAddress());
     }
 

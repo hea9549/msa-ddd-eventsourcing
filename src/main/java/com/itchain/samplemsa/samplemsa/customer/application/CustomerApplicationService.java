@@ -1,15 +1,13 @@
-package com.itchain.samplemsa.samplemsa.customer.service;
+package com.itchain.samplemsa.samplemsa.customer.application;
 
 import com.itchain.samplemsa.samplemsa.customer.domain.CustomerInfo;
 import com.itchain.samplemsa.samplemsa.customer.domain.CustomerInfoService;
-import com.itchain.samplemsa.samplemsa.customer.domain.dto.CustomerDTO;
+import com.itchain.samplemsa.samplemsa.customer.domain.CustomerService;
+import com.itchain.samplemsa.samplemsa.customer.domain.TradeService;
 import com.itchain.samplemsa.samplemsa.customer.domain.exception.DuplicatedIDException;
-import com.itchain.samplemsa.samplemsa.customer.infra.CustomerRepository;
+import com.itchain.samplemsa.samplemsa.customer.CustomerRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
-
-import java.util.ArrayList;
-import java.util.List;
 
 @Component
 public class CustomerApplicationService {
@@ -19,15 +17,18 @@ public class CustomerApplicationService {
     @Autowired
     private CustomerInfoService customerInfoService;
 
+    @Autowired
+    private TradeService tradeService;
+
+    @Autowired
+    private CustomerService customerService;
+
     public CustomerInfo getCustomer(String id) {
         return customerRepository.findById(id);
     }
 
     public void registerCustomer(String id, String pw, String name, String address) {
-        // todo : 모든 customer 쿼리
-        List<CustomerDTO> customerList = new ArrayList<>();
-
-        if (customerInfoService.checkDuplicatedID(id, customerList)) {
+        if (customerService.checkDuplicatedID(id)) {
             throw new DuplicatedIDException();
         }
 
@@ -52,9 +53,8 @@ public class CustomerApplicationService {
     }
 
     public int getCustomerPoint(String id) {
-        // todo : id로 구매내역 쿼리
-        List<Integer> spentPriceList = new ArrayList<Integer>();
+        int spentPrice = tradeService.getPriceOfSignedTrades(id);
 
-        return customerInfoService.calculatePoints(spentPriceList);
+        return customerInfoService.calculatePoint(spentPrice);
     }
 }

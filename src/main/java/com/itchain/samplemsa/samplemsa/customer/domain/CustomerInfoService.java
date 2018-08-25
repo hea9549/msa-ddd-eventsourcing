@@ -1,6 +1,6 @@
 package com.itchain.samplemsa.samplemsa.customer.domain;
 
-import com.itchain.samplemsa.samplemsa.customer.domain.dto.CustomerDTO;
+import com.itchain.samplemsa.samplemsa.customer.domain.dto.CustomerInfoDTO;
 import com.itchain.samplemsa.samplemsa.customer.domain.exception.NonIDValueException;
 import com.itchain.samplemsa.samplemsa.customer.domain.exception.PasswordTooShortException;
 import org.springframework.stereotype.Component;
@@ -40,18 +40,12 @@ public class CustomerInfoService {
         return c;
     }
 
-    public int calculatePoints(List<Integer> spentPriceList) {
-        int point = 0;
-
-        for (int price : spentPriceList) {
-            point += price * 0.1;
-        }
-
-        return point;
+    public int calculatePoint(int spentPrice) {
+        return spentPrice / 10;
     }
 
-    public boolean checkDuplicatedID(String id, List<CustomerDTO> customerList) {
-        for (CustomerDTO customer : customerList) {
+    public boolean checkDuplicatedID(String id, List<CustomerInfoDTO> customerList) {
+        for (CustomerInfoDTO customer : customerList) {
             if (customer.getId().equals(id)) {
                 return true;
             }
