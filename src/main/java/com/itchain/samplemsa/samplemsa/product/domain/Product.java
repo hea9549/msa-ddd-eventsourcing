@@ -67,7 +67,7 @@ public class Product extends Aggregate {
     }
 
     @OnEvent
-    private void handleCreatedEvent(ProductCreatedEvent event) {
+    private void onProductCreatedEvent(ProductCreatedEvent event) {
 
         this.id = event.getID();
         this.productName = event.getProductName();
@@ -78,7 +78,7 @@ public class Product extends Aggregate {
     }
 
     @OnEvent
-    private void handleDeleteEvent(ProductDeletedEvent event) {
+    private void onProductDeleteEvent(ProductDeletedEvent event) {
         this.id = null;
         this.productName = null;
         this.description = null;
@@ -88,19 +88,19 @@ public class Product extends Aggregate {
     }
 
     @OnEvent
-    public void handleUpdateEvent(ProductUpdateEvent event) {
+    public void onProductUpdateEvent(ProductUpdateEvent event) {
         this.productName = event.getProductName();
         this.description = event.getDescription();
         this.price = event.getPrice();
     }
 
     @OnEvent
-    private void handleSoldEvent(ProductStockChangedEvent event) {
+    private void onProductSoldEvent(ProductStockChangedEvent event) {
         this.stock = event.getStock();
     }
 
     @OnEvent
-    private void handleSalesEvent(ProductSalesChangedEvent event) {
+    private void onProductChangeSalessEvent(ProductSalesChangedEvent event) {
         this.stock = event.getSales();
     }
 
