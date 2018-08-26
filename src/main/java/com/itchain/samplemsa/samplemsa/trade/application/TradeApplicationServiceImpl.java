@@ -38,7 +38,6 @@ public class TradeApplicationServiceImpl implements TradeApplicationService {
         }
     }
 
-
     public Trade cancelTrade(String id) {
 
         Trade trade = tradeRepository.findById(id);
