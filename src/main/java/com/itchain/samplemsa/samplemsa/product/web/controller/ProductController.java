@@ -1,14 +1,13 @@
-package com.itchain.samplemsa.samplemsa.product.controller;
+package com.itchain.samplemsa.samplemsa.product.web.controller;
 
 import com.itchain.samplemsa.samplemsa.product.domain.dto.ProductDTO;
-import com.itchain.samplemsa.samplemsa.product.service.ProductApplicationServiceImpl;
+import com.itchain.samplemsa.samplemsa.product.application.ProductApplicationServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.util.ArrayList;
 import java.util.List;
 
 
@@ -58,10 +57,11 @@ public class ProductController {
         return productService.getProducts();
     }
 
-    @RequestMapping(value = "/category", method = RequestMethod.GET)
-    public List<ProductDTO> getCategoryProduct(String category) {
+    @RequestMapping(value = "/product//getCategoryProduct/{category}", method = RequestMethod.GET)
+    public List<ProductDTO> getProductByCategory(@PathVariable String category) {
         return productService.getProductsByCategory(category);
     }
+
 
 
 }

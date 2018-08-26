@@ -19,7 +19,7 @@ public class CustomerController {
     }
 
     @RequestMapping(value = "/customers/register-customer/{customerInfo}", method = RequestMethod.POST)
-    public void registerCustomer(@PathVariable CustomerInfoDTO customerInfo) {
+    public void registerCustomer(@RequestParam(required = true) CustomerInfoDTO customerInfo) {
         customerService.registerCustomer(customerInfo.getId(), customerInfo.getPw(), customerInfo.getName(), customerInfo.getAddress());
     }
 

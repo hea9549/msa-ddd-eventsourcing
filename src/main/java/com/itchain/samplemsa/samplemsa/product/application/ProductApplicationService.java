@@ -1,4 +1,4 @@
-package com.itchain.samplemsa.samplemsa.product.service;
+package com.itchain.samplemsa.samplemsa.product.application;
 
 import com.itchain.samplemsa.samplemsa.product.domain.Product;
 import com.itchain.samplemsa.samplemsa.product.domain.dto.ProductDTO;
