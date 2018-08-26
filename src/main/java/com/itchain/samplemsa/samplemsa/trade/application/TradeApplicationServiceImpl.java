@@ -23,7 +23,7 @@ public class TradeApplicationServiceImpl implements TradeApplicationService {
 
 
 
-    public void addTrade(String productId, String buyerId, String signedDate, int price, int quantity) {
+    public Trade addTrade(String productId, String buyerId, String signedDate, int price, int quantity) {
 
         int stock = productService.getStockByProductId(productId);
 
@@ -31,13 +31,15 @@ public class TradeApplicationServiceImpl implements TradeApplicationService {
         if (validateService.IsAvailableToCreate(quantity, stock)) {
             Trade trade = new Trade(productId, buyerId, signedDate, price, quantity);
             tradeRepository.save(trade);
+
+            return trade;
         } else {
-            //ToDo: 이 에러가 맞는 지 확인.
-            throw new NullPointerException();
+            return null;
         }
     }
 
-    public void cancelTrade(String id) {
+
+    public Trade cancelTrade(String id) {
 
         Trade trade = tradeRepository.findById(id);
 
@@ -48,9 +50,10 @@ public class TradeApplicationServiceImpl implements TradeApplicationService {
 
             tradeRepository.save(trade);
 
-        } else {
-            throw new NullPointerException();
+            return trade;
 
+        } else {
+            return null;
         }
     }
 
@@ -58,12 +61,10 @@ public class TradeApplicationServiceImpl implements TradeApplicationService {
 
         Trade trade = tradeRepository.findById(id);
 
-        //repo에 trade가 있으면 조회, 없으면 에러 throw
-        //ToDo: 이렇게 구현하는 게 맞는 지 확인
         if (trade.getID() != null) {
             return trade;
         } else {
-            throw new NullPointerException();
+            throw null;
         }
 
 
