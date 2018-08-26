@@ -14,7 +14,7 @@ public class SampleAggregate extends Aggregate {
         apply(new SampleEvent());
     }
 
-    public void startSecondEvent(){
+    public void startSecondEvent() {
         apply(new SecondEvent());
     }
 
