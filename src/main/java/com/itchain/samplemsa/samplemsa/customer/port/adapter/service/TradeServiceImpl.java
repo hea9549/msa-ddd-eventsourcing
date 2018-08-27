@@ -11,13 +11,13 @@ import java.util.List;
 @Component
 public class TradeServiceImpl implements TradeService {
     @Autowired
-    private HttpTradeAdapter httpTradeAdapter;
+    private TradeAdapter tradeAdapter;
 
     @Override
     public int getPriceOfSignedTrades(String customerID) {
         int totalPrice = 0;
 
-        List<TradeInfoDTO> tradeInfoDTOList = httpTradeAdapter.getTradeListByCustomerID(customerID);
+        List<TradeInfoDTO> tradeInfoDTOList = tradeAdapter.getTradeListByCustomerID(customerID);
 
         for (TradeInfoDTO trade : tradeInfoDTOList) {
             if (trade.getStatus().equals(TradeStatus.SIGNED)) {
