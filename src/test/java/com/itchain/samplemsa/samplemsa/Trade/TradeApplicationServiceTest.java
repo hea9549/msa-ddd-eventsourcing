@@ -1,7 +1,6 @@
-package com.itchain.samplemsa.samplemsa;
+package com.itchain.samplemsa.samplemsa.Trade;
 
-import com.itchain.samplemsa.samplemsa.common.EventRepositoryImpl;
-import com.itchain.samplemsa.samplemsa.trade.TradeRepository;
+import com.itchain.samplemsa.samplemsa.TestApplication;
 import com.itchain.samplemsa.samplemsa.trade.application.TradeApplicationServiceImpl;
 import com.itchain.samplemsa.samplemsa.trade.domain.DeliveryService;
 import com.itchain.samplemsa.samplemsa.trade.domain.ProductService;
@@ -10,24 +9,19 @@ import com.itchain.samplemsa.samplemsa.trade.domain.TradeStatus;
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
-import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.context.annotation.Profile;
 import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringRunner;
-import org.springframework.test.context.support.AnnotationConfigContextLoader;
 
 
 @RunWith(SpringRunner.class)
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
-@ContextConfiguration(classes = MockApplication.class)
+@ContextConfiguration(classes = TestApplication.class)
 @ActiveProfiles("test")
-public class TradeTest {
+public class TradeApplicationServiceTest {
 
     @Autowired
     private TradeApplicationServiceImpl tradeApplicationService;
@@ -72,6 +66,7 @@ public class TradeTest {
 
         //GET TEST
 
+        //ToDo: bug fix - wrong id로 입력 시 null 반환
 //        //when : wrong id
 //        Trade retrievedTrade1 = tradeApplicationService.getTradeById("random id");
 //

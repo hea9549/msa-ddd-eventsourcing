@@ -9,10 +9,8 @@ import com.itchain.samplemsa.samplemsa.customer.CustomerRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-
 @Component
 public class CustomerApplicationService {
-
     @Autowired
     private CustomerRepository customerRepository;
 

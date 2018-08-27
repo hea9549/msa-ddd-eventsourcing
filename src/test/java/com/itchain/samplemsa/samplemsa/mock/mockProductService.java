@@ -1,9 +1,6 @@
-package com.itchain.samplemsa.samplemsa;
+package com.itchain.samplemsa.samplemsa.mock;
 
 import com.itchain.samplemsa.samplemsa.trade.domain.ProductService;
-import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.Configuration;
-import org.springframework.context.annotation.Profile;
 
 public class mockProductService implements ProductService {
 

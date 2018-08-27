@@ -1,4 +1,4 @@
-package com.itchain.samplemsa.samplemsa;
+package com.itchain.samplemsa.samplemsa.mock;
 
 import com.itchain.samplemsa.samplemsa.trade.domain.DeliveryService;
 

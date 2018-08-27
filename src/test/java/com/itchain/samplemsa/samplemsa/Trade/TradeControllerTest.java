@@ -1,13 +1,11 @@
-package com.itchain.samplemsa.samplemsa.Controller;
+package com.itchain.samplemsa.samplemsa.Trade;
 
 
-import com.itchain.samplemsa.samplemsa.MockApplication;
-import com.itchain.samplemsa.samplemsa.SampleMsaApplication;
+import com.itchain.samplemsa.samplemsa.TestApplication;
 import com.itchain.samplemsa.samplemsa.trade.application.TradeApplicationServiceImpl;
 import com.itchain.samplemsa.samplemsa.trade.domain.Trade;
 import com.itchain.samplemsa.samplemsa.trade.domain.TradeStatus;
 import com.itchain.samplemsa.samplemsa.trade.web.controller.TradeController;
-import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.Mockito;
@@ -16,26 +14,19 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
-import org.springframework.http.HttpHeaders;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
-import org.springframework.mock.web.MockHttpServletResponse;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.MvcResult;
 import org.springframework.test.web.servlet.RequestBuilder;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
-import org.springframework.test.web.servlet.result.MockMvcResultHandlers;
-import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.web.context.WebApplicationContext;
-
-import javax.print.attribute.standard.Media;
 
 
 @RunWith(SpringRunner.class)
 @WebMvcTest(value = TradeController.class, secure = false)
-@ContextConfiguration(classes = MockApplication.class)
+@ContextConfiguration(classes = TestApplication.class)
 @AutoConfigureMockMvc
 public class TradeControllerTest {
 
@@ -58,8 +49,6 @@ public class TradeControllerTest {
         Mockito.when(
 
                 tradeApplicationService.getTradeById(Mockito.anyString())).thenReturn(mockTrade);
-
-//        tradeApplicationService.addTrade(Mockito.anyString(),Mockito.anyString(),Mockito.anyString(),Mockito.anyInt(), Mockito.anyInt())
 
 
         RequestBuilder requestBuilder = MockMvcRequestBuilders.get("/trades/{id}", mockTrade.getID()).accept(MediaType.APPLICATION_JSON);
