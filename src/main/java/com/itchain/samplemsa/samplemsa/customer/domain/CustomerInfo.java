@@ -6,6 +6,8 @@ import com.itchain.samplemsa.samplemsa.common.OnEvent;
 import com.itchain.samplemsa.samplemsa.customer.domain.event.CustomerAddedEvent;
 import com.itchain.samplemsa.samplemsa.customer.domain.event.CustomerRemovedEvent;
 import com.itchain.samplemsa.samplemsa.customer.domain.event.CustomerUpdatedEvent;
+import com.itchain.samplemsa.samplemsa.customer.domain.exception.PasswordNotMatchedException;
+import com.itchain.samplemsa.samplemsa.customer.domain.exception.PasswordTooShortException;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
 import org.springframework.data.annotation.Id;
@@ -56,10 +58,18 @@ public class CustomerInfo extends Aggregate {
     }
 
     public void changeCustomerInfo(String pw, String name, String address) {
+        if (pw.length() < 8) {
+            throw new PasswordTooShortException();
+        }
+
         this.apply(new CustomerUpdatedEvent(this.id, pw, name, address));
     }
 
-    public void removeCustomerInfo(String id) {
+    public void removeCustomerInfo(String id, String pw) {
+        if (!this.pw.equals(pw)) {
+            throw new PasswordNotMatchedException();
+        }
+
         this.apply(new CustomerRemovedEvent(id));
     }
 

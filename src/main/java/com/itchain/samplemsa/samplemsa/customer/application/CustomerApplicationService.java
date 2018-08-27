@@ -27,7 +27,7 @@ public class CustomerApplicationService {
         return customerRepository.findById(id);
     }
 
-    public void registerCustomer(String id, String pw, String name, String address) {
+    public CustomerInfo registerCustomer(String id, String pw, String name, String address) {
         if (customerService.checkDuplicatedID(id)) {
             throw new DuplicatedIDException();
         }
@@ -36,25 +36,27 @@ public class CustomerApplicationService {
         CustomerInfo newCustomer = customerInfoService.createCustomerInfo(id, pw, name, address, registeredDay);
 
         customerRepository.save(newCustomer);
+        return newCustomer;
     }
 
     public void withdrawCustomer(String id, String pw) {
         CustomerInfo customer = customerRepository.findById(id);
-        CustomerInfo removedCustomer = customerInfoService.removeCustomerInfo(customer, pw);
+        customer.removeCustomerInfo(id, pw);
 
-        customerRepository.save(removedCustomer);
+        customerRepository.save(customer);
     }
 
-    public void updateCustomer(String id, String pw, String name, String address) {
+    public CustomerInfo updateCustomer(String id, String pw, String name, String address) {
         CustomerInfo customer = customerRepository.findById(id);
-        CustomerInfo updatedCustomer = customerInfoService.updateCustomerInfo(customer, pw, name, address);
+        customer.changeCustomerInfo(pw, name, address);
 
-        customerRepository.save(updatedCustomer);
+        customerRepository.save(customer);
+        return customer;
     }
 
     public int getCustomerPoint(String id) {
         int spentPrice = tradeService.getPriceOfSignedTrades(id);
 
-        return customerInfoService.calculatePoint(spentPrice);
+        return spentPrice / 10;
     }
 }
