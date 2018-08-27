@@ -41,17 +41,17 @@ public class CustomerApplicationService {
 
     public void withdrawCustomer(String id, String pw) {
         CustomerInfo customer = customerRepository.findById(id);
-        CustomerInfo removedCustomer = customerInfoService.removeCustomerInfo(customer, pw);
+        customer.removeCustomerInfo(id, pw);
 
-        customerRepository.save(removedCustomer);
+        customerRepository.save(customer);
     }
 
     public CustomerInfo updateCustomer(String id, String pw, String name, String address) {
         CustomerInfo customer = customerRepository.findById(id);
-        CustomerInfo updatedCustomer = customerInfoService.updateCustomerInfo(customer, pw, name, address);
+        customer.changeCustomerInfo(pw, name, address);
 
-        customerRepository.save(updatedCustomer);
-        return updatedCustomer;
+        customerRepository.save(customer);
+        return customer;
     }
 
     public int getCustomerPoint(String id) {
