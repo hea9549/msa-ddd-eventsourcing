@@ -7,7 +7,11 @@ import com.itchain.samplemsa.samplemsa.trade.domain.Trade;
 import com.itchain.samplemsa.samplemsa.trade.domain.command.CreateTradeCommand;
 import com.itchain.samplemsa.samplemsa.trade.domain.dto.ProductInfoDTO;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
+
+import java.net.URI;
 
 @RestController
 public class TradeController {
@@ -23,13 +27,19 @@ public class TradeController {
 
 
     @RequestMapping(value = "/trades", method = RequestMethod.POST)
-    public void createTrade(@RequestBody CreateTradeCommand createTradeCommand) {
-        tradeApplicationService.addTrade(createTradeCommand.getProductId(), createTradeCommand.getBuyerId(), createTradeCommand.getSignedDate(), createTradeCommand.getPrice(), createTradeCommand.getQuantity());
+    public Trade createTrade(@RequestBody CreateTradeCommand createTradeCommand) {
+        Trade trade = tradeApplicationService.addTrade(createTradeCommand.getProductId(), createTradeCommand.getBuyerId(), createTradeCommand.getSignedDate(), createTradeCommand.getPrice(), createTradeCommand.getQuantity());
+        if (trade == null) {
+            return null;
+        }
+
+        return trade;
     }
 
     @RequestMapping(value = "/trades/{id}", method = RequestMethod.DELETE)
-    public void cancelTrade(@RequestBody String id) {
-        tradeApplicationService.cancelTrade(id);
+    public Trade cancelTrade(@PathVariable String id) {
+        Trade trade = tradeApplicationService.cancelTrade(id);
+        return trade;
     }
 
 

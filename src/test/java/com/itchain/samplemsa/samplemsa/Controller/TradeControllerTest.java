@@ -1,9 +1,11 @@
 package com.itchain.samplemsa.samplemsa.Controller;
 
 
+import com.itchain.samplemsa.samplemsa.MockApplication;
 import com.itchain.samplemsa.samplemsa.SampleMsaApplication;
 import com.itchain.samplemsa.samplemsa.trade.application.TradeApplicationServiceImpl;
 import com.itchain.samplemsa.samplemsa.trade.domain.Trade;
+import com.itchain.samplemsa.samplemsa.trade.domain.TradeStatus;
 import com.itchain.samplemsa.samplemsa.trade.web.controller.TradeController;
 import org.junit.Before;
 import org.junit.Test;
@@ -24,6 +26,7 @@ import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.MvcResult;
 import org.springframework.test.web.servlet.RequestBuilder;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
+import org.springframework.test.web.servlet.result.MockMvcResultHandlers;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.web.context.WebApplicationContext;
 
@@ -32,7 +35,7 @@ import javax.print.attribute.standard.Media;
 
 @RunWith(SpringRunner.class)
 @WebMvcTest(value = TradeController.class, secure = false)
-@ContextConfiguration(classes = SampleMsaApplication.class)
+@ContextConfiguration(classes = MockApplication.class)
 @AutoConfigureMockMvc
 public class TradeControllerTest {
 
@@ -45,20 +48,12 @@ public class TradeControllerTest {
     @MockBean
     TradeApplicationServiceImpl tradeApplicationService;
 
-    @Before
-    public void setUp() {
-        mockMvc = MockMvcBuilders.webAppContextSetup(webApplicationContext).build();
-    }
-
-
-    Trade mockTrade = new Trade("product01", "buyer01", "2018-01-01", 10000, 1);
-
-
-    String exampleCommandJson = "{\"prodoctId\":\"product01\",\"buyerId\":\"buyer01\",\"signedDate\":\"2018-01-01\",\"price\",10000,\"quantity\":1}";
-
+    String exampleCommandJson = "{\"productId\":\"product01\",\"buyerId\":\"buyer01\",\"signedDate\":\"2018-01-01\",\"price\":\"10000\",\"quantity\":\"1\"}";
 
     @Test
     public void retrieveTrade() throws Exception {
+
+        Trade mockTrade = new Trade("product01", "buyer01", "2018-01-01", 10000, 1);
 
         Mockito.when(
 
@@ -67,7 +62,7 @@ public class TradeControllerTest {
 //        tradeApplicationService.addTrade(Mockito.anyString(),Mockito.anyString(),Mockito.anyString(),Mockito.anyInt(), Mockito.anyInt())
 
 
-        RequestBuilder requestBuilder = MockMvcRequestBuilders.get("/trades/{id}", "11").accept(MediaType.APPLICATION_JSON);
+        RequestBuilder requestBuilder = MockMvcRequestBuilders.get("/trades/{id}", mockTrade.getID()).accept(MediaType.APPLICATION_JSON);
 
         MvcResult result = mockMvc.perform(requestBuilder).andReturn();
 
@@ -75,14 +70,12 @@ public class TradeControllerTest {
 
         JSONAssert.assertEquals(expected,result.getResponse().getContentAsString(),false);
 
-        System.out.println(result.getResponse().getHeader(HttpHeaders.LOCATION));
-
     }
 
     @Test
     public void createTrade() throws Exception {
 
-        Trade mockTrade = new Trade("1", "11", "21", 10, 10);
+        Trade mockTrade = new Trade("product02", "buyer02", "2018-01-01", 100, 100);
 
         Mockito.when(
                 tradeApplicationService.addTrade(Mockito.anyString(),Mockito.anyString(),Mockito.anyString(),Mockito.anyInt(), Mockito.anyInt())).thenReturn(mockTrade);
@@ -94,15 +87,29 @@ public class TradeControllerTest {
 
         MvcResult result = mockMvc.perform(requestBuilder).andReturn();
 
-        MockHttpServletResponse response = result.getResponse();
+        String expected = "{productId:product02,buyerId:buyer02,signedDate:2018-01-01,price:100,quantity:100,status:SIGNED}";
 
-        System.out.println(response.getStatus());
+        JSONAssert.assertEquals(expected,result.getResponse().getContentAsString(), false);
+    }
 
-        System.out.println(HttpStatus.CREATED.value());
+    @Test
+    public void cancelTrade() throws Exception {
 
-        System.out.println("kk");
+        Trade mockTrade = new Trade("product03", "buyer03", "2018-01-01", 10, 10);
+        mockTrade.setStatus(TradeStatus.CANCELED);
 
-        System.out.println(response.getHeader(HttpHeaders.LOCATION));
+        Mockito.when(
+                tradeApplicationService.cancelTrade(Mockito.anyString())).thenReturn(mockTrade);
+
+        RequestBuilder requestBuilder = MockMvcRequestBuilders
+                .delete("/trades/{id}",mockTrade.getID())
+                .accept(MediaType.APPLICATION_JSON);
+
+        MvcResult result = mockMvc.perform(requestBuilder).andReturn();
+
+        String expected = "{productId:product03,buyerId:buyer03,signedDate:2018-01-01,price:10,quantity:10,status:CANCELED}";
+
+        JSONAssert.assertEquals(expected,result.getResponse().getContentAsString(),false);
 
 
     }
