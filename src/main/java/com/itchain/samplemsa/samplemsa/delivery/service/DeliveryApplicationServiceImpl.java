@@ -1,4 +1,4 @@
-//package com.itchain.samplemsa.samplemsa.delivery.application;
+package com.itchain.samplemsa.samplemsa.delivery.service;//package com.itchain.samplemsa.samplemsa.delivery.application;
 //
 //import com.itchain.samplemsa.samplemsa.common.AggregateRepository;
 //import com.itchain.samplemsa.samplemsa.common.Event;

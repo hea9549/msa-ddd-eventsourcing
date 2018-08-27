@@ -1,9 +1,6 @@
 package com.itchain.samplemsa.samplemsa;
 
-import com.itchain.samplemsa.samplemsa.common.EventRepositoryImpl;
-import com.itchain.samplemsa.samplemsa.trade.TradeRepository;
 import com.itchain.samplemsa.samplemsa.trade.application.TradeApplicationServiceImpl;
-import com.itchain.samplemsa.samplemsa.trade.domain.Trade;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;

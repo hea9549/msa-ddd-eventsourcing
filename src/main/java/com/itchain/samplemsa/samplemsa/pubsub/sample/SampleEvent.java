@@ -8,7 +8,7 @@ import java.io.Serializable;
 @NoArgsConstructor
 @Getter
 @ToString
-public class SampleEvent extends Event {
+public class SampleEvent implements Event {
     private String id;
     private String message;
 

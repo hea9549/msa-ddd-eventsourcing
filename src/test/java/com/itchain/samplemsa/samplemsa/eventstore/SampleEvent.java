@@ -9,7 +9,7 @@ import lombok.RequiredArgsConstructor;
 @Getter
 @NoArgsConstructor
 @RequiredArgsConstructor
-public class SampleEvent extends Event {
+public class SampleEvent implements Event {
     @NonNull
     private String id;
 

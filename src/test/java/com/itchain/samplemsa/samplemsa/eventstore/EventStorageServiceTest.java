@@ -1,6 +1,7 @@
 package com.itchain.samplemsa.samplemsa.eventstore;
 
 import com.itchain.samplemsa.samplemsa.SampleMsaApplication;
+import com.itchain.samplemsa.samplemsa.common.EventRepository;
 import com.itchain.samplemsa.samplemsa.eventstore.domain.MongoClient;
 import com.itchain.samplemsa.samplemsa.eventstore.exception.EventIDEmptyException;
 import org.junit.After;
@@ -9,6 +10,7 @@ import org.junit.Test;
 import org.junit.rules.ExpectedException;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.annotation.DirtiesContext;
 import org.springframework.test.context.TestPropertySource;
@@ -21,6 +23,7 @@ public class EventStorageServiceTest {
     @Autowired
     private MongoClient client;
     @Autowired
+    @Qualifier("eventStorageService")
     private EventRepository repo;
 
     @Rule

@@ -1,11 +1,13 @@
 package com.itchain.samplemsa.samplemsa.customer.port.adapter.service;
 
 import com.itchain.samplemsa.samplemsa.customer.domain.dto.CustomerInfoDTO;
+import org.springframework.stereotype.Component;
 import org.springframework.web.client.RestTemplate;
 
 import java.util.Arrays;
 import java.util.List;
 
+@Component
 public class HttpCustomerAdapter implements CustomerAdapter{
     private static final String HOST = "localhost";
     private static final String PORT = "8080";

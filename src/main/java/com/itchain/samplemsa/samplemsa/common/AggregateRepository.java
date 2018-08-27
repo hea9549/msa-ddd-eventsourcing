@@ -1,16 +1,18 @@
 package com.itchain.samplemsa.samplemsa.common;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Component;
+import org.springframework.test.context.ActiveProfiles;
 
 import java.lang.reflect.InvocationTargetException;
 import java.util.List;
 
 @Component
 public class AggregateRepository<T extends Aggregate> {
-
     private EventRepository eventRepository;
 
+    // change it to eventStorageService on production.
     @Autowired
     public AggregateRepository(EventRepository eventRepository){
         this.eventRepository = eventRepository;

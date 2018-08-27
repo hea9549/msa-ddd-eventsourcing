@@ -1,17 +1,15 @@
 package com.itchain.samplemsa.samplemsa.eventstore;
 
 import com.itchain.samplemsa.samplemsa.common.Event;
+import com.itchain.samplemsa.samplemsa.common.EventRepository;
 import com.itchain.samplemsa.samplemsa.eventstore.domain.EntityWithIdAndEventList;
 import com.itchain.samplemsa.samplemsa.eventstore.domain.Store;
 import com.itchain.samplemsa.samplemsa.eventstore.exception.EventIDEmptyException;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
-import org.springframework.stereotype.Repository;
-import org.springframework.stereotype.Service;
 
 import java.util.List;
 
-@Repository
+@Component
 public class EventStorageService implements EventRepository {
     private Store store;
 
