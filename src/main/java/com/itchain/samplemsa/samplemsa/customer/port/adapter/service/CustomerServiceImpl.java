@@ -8,11 +8,11 @@ import java.util.List;
 
 public class CustomerServiceImpl implements CustomerService {
     @Autowired
-    private HttpCustomerAdapter httpCustomerAdapter;
+    private CustomerAdapter customerAdapter;
 
     @Override
     public boolean checkDuplicatedID(String id) {
-        List<CustomerInfoDTO> customerInfoDTOList = httpCustomerAdapter.getAllCustomerList();
+        List<CustomerInfoDTO> customerInfoDTOList = customerAdapter.getAllCustomerList();
 
         for (CustomerInfoDTO customer : customerInfoDTOList) {
             if(id.equals(customer.getId())) {

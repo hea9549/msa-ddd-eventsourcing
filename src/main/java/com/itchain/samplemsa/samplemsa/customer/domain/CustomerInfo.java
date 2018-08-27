@@ -59,7 +59,11 @@ public class CustomerInfo extends Aggregate {
         this.apply(new CustomerUpdatedEvent(this.id, pw, name, address));
     }
 
-    public void removeCustomerInfo(String id) {
+    public void removeCustomerInfo(String id, String pw) {
+        if (!this.pw.equals(pw)) {
+            throw new Password
+        }
+
         this.apply(new CustomerRemovedEvent(id));
     }
 

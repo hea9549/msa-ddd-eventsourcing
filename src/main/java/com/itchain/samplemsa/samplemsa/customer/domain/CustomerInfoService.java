@@ -39,18 +39,4 @@ public class CustomerInfoService {
 
         return c;
     }
-
-    public int calculatePoint(int spentPrice) {
-        return spentPrice / 10;
-    }
-
-    public boolean checkDuplicatedID(String id, List<CustomerInfoDTO> customerList) {
-        for (CustomerInfoDTO customer : customerList) {
-            if (customer.getId().equals(id)) {
-                return true;
-            }
-        }
-
-        return false;
-    }
 }
