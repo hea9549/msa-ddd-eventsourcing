@@ -6,12 +6,14 @@ import com.itchain.samplemsa.samplemsa.common.Event;
 import com.itchain.samplemsa.samplemsa.common.OnEvent;
 import com.itchain.samplemsa.samplemsa.trade.domain.event.TradeCreatedEvent;
 import com.itchain.samplemsa.samplemsa.trade.domain.event.TradeDeletedEvent;
+import lombok.Data;
 import lombok.Getter;
+import lombok.Setter;
 
 import java.util.List;
 import java.util.UUID;
 
-@Getter
+@Data
 public class Trade extends Aggregate {
 
     private String id;
