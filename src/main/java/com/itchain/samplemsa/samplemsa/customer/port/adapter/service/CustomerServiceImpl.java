@@ -3,9 +3,11 @@ package com.itchain.samplemsa.samplemsa.customer.port.adapter.service;
 import com.itchain.samplemsa.samplemsa.customer.domain.CustomerService;
 import com.itchain.samplemsa.samplemsa.customer.domain.dto.CustomerInfoDTO;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
 import java.util.List;
 
+@Component
 public class CustomerServiceImpl implements CustomerService {
     @Autowired
     private HttpCustomerAdapter httpCustomerAdapter;
