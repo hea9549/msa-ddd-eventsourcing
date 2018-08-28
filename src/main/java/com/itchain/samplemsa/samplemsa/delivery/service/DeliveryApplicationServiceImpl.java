@@ -6,7 +6,7 @@
 //import com.itchain.samplemsa.samplemsa.common.Util;
 //import com.itchain.samplemsa.samplemsa.delivery.DeliveryRepository;
 //import com.itchain.samplemsa.samplemsa.delivery.domain.Delivery;
-//import com.itchain.samplemsa.samplemsa.delivery.domain.TradeStatus;
+//import com.itchain.samplemsa.samplemsa.delivery.domain.OrderStatus;
 //import com.itchain.samplemsa.samplemsa.delivery.domain.dto.TradeInfoDTO;
 //import com.itchain.samplemsa.samplemsa.delivery.domain.event.DeliveryInfoChangedEvent;
 //import com.itchain.samplemsa.samplemsa.delivery.domain.event.DeliveryInfoCreatedEvent;
@@ -22,14 +22,14 @@
 //    @Override
 //    public Delivery newDeliveryServiceWithTradeInfo(TradeInfoDTO tradeInfoDTO) {
 //        Delivery delivery = new Delivery();
-//        delivery.changeStatus(TradeStatus.DONE);
+//        delivery.changeStatus(OrderStatus.DONE);
 //        deliveryRepository.save(delivery);
 //        Delivery asdf = new Delivery(events);
 //        return delivery;
 //    }
 //
 //    @Override
-//    public Delivery changeDeliveryStatus(String id, TradeStatus status) {
+//    public Delivery changeDeliveryStatus(String id, OrderStatus status) {
 //
 //        Delivery delivery = (Delivery)eventRepository.load(id);
 //        return delivery;

@@ -1,7 +1,7 @@
 //package com.itchain.samplemsa.samplemsa.delivery.controller;
 //
 //import com.itchain.samplemsa.samplemsa.delivery.domain.Delivery;
-//import com.itchain.samplemsa.samplemsa.delivery.domain.TradeStatus;
+//import com.itchain.samplemsa.samplemsa.delivery.domain.OrderStatus;
 //import com.itchain.samplemsa.samplemsa.delivery.domain.dto.DeliveryDTO;
 //import com.itchain.samplemsa.samplemsa.delivery.domain.dto.TradeInfoDTO;
 //import com.itchain.samplemsa.samplemsa.delivery.application.DeliveryApplicationService;
@@ -33,13 +33,13 @@
 //    @RequestMapping(value = "/deliveries/{deliveryId}",method = RequestMethod.GET)
 //    public DeliveryDTO getDeliveryInfo(@PathVariable String deliveryId){
 //        Delivery delivery =new Delivery();
-//        delivery.changeStatus(TradeStatus.DONE);
+//        delivery.changeStatus(OrderStatus.DONE);
 //
 //        return queryService.getDeliverInfo(deliveryId);
 //    }
 //
 //    @RequestMapping(value = "/deliveries/{deliveryId}",method = RequestMethod.PUT)
-//    public DeliveryDTO changeDeliveryStatus(@PathVariable String deliveryId, @RequestParam TradeStatus status){
+//    public DeliveryDTO changeDeliveryStatus(@PathVariable String deliveryId, @RequestParam OrderStatus status){
 //        Delivery delivery = deliveryApplicationService.changeDeliveryStatus(deliveryId,status);
 //        return new DeliveryDTO(delivery.GetID(), delivery.getProductId(), delivery.getBuyerId()
 //                , delivery.getBuyDate(), delivery.getStartDate(), delivery.getDeliverStatus());

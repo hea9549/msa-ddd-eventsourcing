@@ -1,6 +1,6 @@
 package com.itchain.samplemsa.samplemsa.mock;
 
-import com.itchain.samplemsa.samplemsa.trade.domain.DeliveryService;
+import com.itchain.samplemsa.samplemsa.order.domain.DeliveryService;
 
 public class mockDeliveryService implements DeliveryService {
 
