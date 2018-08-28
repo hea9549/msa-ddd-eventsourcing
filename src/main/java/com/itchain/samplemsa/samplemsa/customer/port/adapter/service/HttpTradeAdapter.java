@@ -13,7 +13,7 @@ public class HttpTradeAdapter implements TradeAdapter {
     private static final String HOST = "localhost";
     private static final String PORT = "8080";
     private static final String PROTOCOL = "http";
-    private static final String TEMPLATE = "/trade/";
+    private static final String TEMPLATE = "/order/";
 
     @Override
     public List<TradeInfoDTO> getTradeListByCustomerID(String id) {

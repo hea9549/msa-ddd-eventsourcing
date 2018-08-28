@@ -6,6 +6,7 @@ import com.itchain.samplemsa.samplemsa.customer.application.CustomerApplicationS
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+
 @RestController
 public class CustomerController {
     @Autowired

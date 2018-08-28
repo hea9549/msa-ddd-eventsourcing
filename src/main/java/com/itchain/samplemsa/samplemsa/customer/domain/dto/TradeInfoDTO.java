@@ -1,6 +1,6 @@
 package com.itchain.samplemsa.samplemsa.customer.domain.dto;
 
-import com.itchain.samplemsa.samplemsa.trade.domain.TradeStatus;
+import com.itchain.samplemsa.samplemsa.order.domain.OrderStatus;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 
@@ -10,5 +10,5 @@ public class TradeInfoDTO {
     private String id;
     private int price;
     private int quantity;
-    private TradeStatus status;
+    private OrderStatus status;
 }
