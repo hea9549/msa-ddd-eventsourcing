@@ -1,7 +1,4 @@
-package com.itchain.samplemsa.samplemsa;
-
-import com.itchain.samplemsa.samplemsa.common.Aggregate;
-import com.itchain.samplemsa.samplemsa.common.OnEvent;
+package com.itchain.samplemsa.samplemsa.common;
 
 public class SampleAggregate extends Aggregate {
     @Override

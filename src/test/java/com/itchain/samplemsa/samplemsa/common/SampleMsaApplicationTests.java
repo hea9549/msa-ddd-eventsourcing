@@ -1,4 +1,4 @@
-package com.itchain.samplemsa.samplemsa;
+package com.itchain.samplemsa.samplemsa.common;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;

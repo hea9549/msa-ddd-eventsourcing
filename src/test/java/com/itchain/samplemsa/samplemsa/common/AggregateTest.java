@@ -1,11 +1,9 @@
-package com.itchain.samplemsa.samplemsa;
+package com.itchain.samplemsa.samplemsa.common;
 
-import com.itchain.samplemsa.samplemsa.common.EventRepositoryImpl;
 import com.itchain.samplemsa.samplemsa.delivery.DeliveryRepository;
 import com.itchain.samplemsa.samplemsa.delivery.domain.DeliverStatus;
 import com.itchain.samplemsa.samplemsa.delivery.domain.Delivery;
 import org.junit.Test;
-import org.springframework.beans.factory.annotation.Autowired;
 
 public class AggregateTest {
     DeliveryRepository deliveryRepository = new DeliveryRepository(new EventRepositoryImpl());
