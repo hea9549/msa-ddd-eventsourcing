@@ -1,21 +1,22 @@
 package com.itchain.samplemsa.samplemsa.trade.port.adapter.service;
 
+import com.itchain.samplemsa.samplemsa.Config;
 import com.itchain.samplemsa.samplemsa.trade.domain.DeliverStatus;
 import com.itchain.samplemsa.samplemsa.trade.domain.dto.DeliveryInfoDTO;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
 @Service
 public class HttpDeliveryAdapter implements DeliveryAdapter {
-    private static final String HOST = "localhost";
-    private static final String PORT = "8080";
-    private static final String PROTOCOL = "http";
-    private static final String TEMPLATE = "/delivery/";
+
+    @Autowired
+    Config config;
 
     public DeliverStatus getDeliveryStatusByTradeId(String id) {
 
         RestTemplate restTemplate = new RestTemplate();
-        DeliveryInfoDTO deliveryInfoDTO = restTemplate.getForObject(PROTOCOL + "://" + HOST + ":" + PORT + TEMPLATE + id, DeliveryInfoDTO.class);
+        DeliveryInfoDTO deliveryInfoDTO = restTemplate.getForObject( config.getPROTOCOL()+ "://" + config.getHOST() + ":" + config.getPORT() + "/" + config.getSERVICE().get(1) + "/" + id, DeliveryInfoDTO.class);
         return deliveryInfoDTO.getStatus();
     }
 

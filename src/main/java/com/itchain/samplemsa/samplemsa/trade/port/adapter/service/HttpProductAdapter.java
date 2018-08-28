@@ -1,21 +1,21 @@
 package com.itchain.samplemsa.samplemsa.trade.port.adapter.service;
 
+import com.itchain.samplemsa.samplemsa.Config;
 import com.itchain.samplemsa.samplemsa.trade.domain.dto.ProductInfoDTO;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
 @Service
 public class HttpProductAdapter implements ProductAdapter {
 
-    private static final String HOST = "localhost";
-    private static final String PORT = "8080";
-    private static final String PROTOCOL = "http";
-    private static final String TEMPLATE = "/product/";
+    @Autowired
+    Config config;
 
     public int getStockByProductId(String productId) {
 
         RestTemplate restTemplate = new RestTemplate();
-        ProductInfoDTO productInfo = restTemplate.getForObject(PROTOCOL + "://" + HOST + ":" + PORT + TEMPLATE + productId, ProductInfoDTO.class);
+        ProductInfoDTO productInfo = restTemplate.getForObject(config.getPROTOCOL() + "://" + config.getHOST() + ":" + config.getPORT() + "/" + config.getSERVICE().get(0) + "/" + productId, ProductInfoDTO.class);
 
         return productInfo.getQuantity();
 

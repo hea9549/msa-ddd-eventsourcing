@@ -1,0 +1,10 @@
+env:
+  HOST: localhost
+  PORT: 8080
+  PROTOCOL: http
+  SERVICE:
+    - product
+    - delivery
+    - customer
+    - order
+
