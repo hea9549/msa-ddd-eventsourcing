@@ -9,5 +9,5 @@ public class ProductInfoDTO {
     private String productId;
     private String buyerId;
     private int price;
-    private int quantity;
+    private int stock;
 }
