@@ -6,7 +6,6 @@ import com.itchain.samplemsa.samplemsa.product.domain.ProductService;
 import com.itchain.samplemsa.samplemsa.product.domain.dto.ProductDTO;
 import lombok.NoArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
 import java.util.Comparator;

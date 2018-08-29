@@ -27,7 +27,7 @@ public class ProductApplicationServiceTest {
     public void testAddAndProduct() {
         productApplicationService.addProduct("product1", "jacket", "awesome jacket", 10000, 100);
 
-        Assert.assertEquals("Jacket", productRepository.findById("product1").getProductName());
+        Assert.assertEquals("jacket", productRepository.findById("product1").getProductName());
     }
 
     @Test
@@ -44,7 +44,6 @@ public class ProductApplicationServiceTest {
         productApplicationService.updateProduct("product1", "green jacket","awesome green jacket", 10000);
         Assert.assertEquals("green jacket",productRepository.findById("product1").getProductName());
         Assert.assertEquals("awesome green jacket", productRepository.findById("product1").getDescription());
-
     }
 
 }
