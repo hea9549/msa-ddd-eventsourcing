@@ -11,11 +11,12 @@ public class ProductDTO {
     private String productName;
     private String description;
     private int price;
-
+    private int sales;
 
     public ProductDTO(Product product){
         this.productName = product.getProductName();
         this.description = product.getDescription();
         this.price = product.getPrice();
+        this.sales = product.getSales();
     }
 }
