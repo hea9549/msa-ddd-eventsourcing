@@ -6,6 +6,7 @@ import com.itchain.samplemsa.samplemsa.product.domain.ProductService;
 import com.itchain.samplemsa.samplemsa.product.domain.dto.ProductDTO;
 import lombok.NoArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
 import java.util.Comparator;
@@ -53,16 +54,22 @@ public class ProductApplicationServiceImpl implements ProductApplicationService 
         productRepository.save(product);
     }
 
-    public List<ProductDTO> getBestProduct(int num) {
+    public List<ProductDTO> getBestProduct(int num, int index) {
         List<ProductDTO> productDTOList = productService.getAllProducts();
         productDTOList.sort(Comparator.comparingInt(ProductDTO::getSales));
-        return productDTOList.subList(0, num);
+        if (productDTOList.size() > (index + 1) * num){
+            return productDTOList.subList(index * num , (index + 1) + num);
+        }
+        return productDTOList.subList(index * num, productDTOList.size());
     }
 
-    public List<ProductDTO> getProductSortByProductName(int num){
+    public List<ProductDTO> getProductSortByProductName(int num, int index){
         List<ProductDTO> productDTOList = productService.getAllProducts();
         productDTOList.sort(Comparator.comparing(ProductDTO::getProductName));
-        return productDTOList.subList(0, num);
+        if (productDTOList.size() > (index + 1) * num){
+            return productDTOList.subList(index * num , (index + 1) + num);
+        }
+        return productDTOList.subList(index * num, productDTOList.size());
     }
 
 }

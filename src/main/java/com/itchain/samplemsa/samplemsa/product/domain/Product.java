@@ -100,7 +100,7 @@ public class Product extends Aggregate {
     }
 
     @OnEvent
-    private void onProductChangeSalessEvent(ProductSalesChangedEvent event) {
+    private void onProductChangeSalesEvent(ProductSalesChangedEvent event) {
         this.stock = event.getSales();
     }
 
