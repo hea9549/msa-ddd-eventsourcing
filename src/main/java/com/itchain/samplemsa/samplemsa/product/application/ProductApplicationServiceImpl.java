@@ -6,7 +6,6 @@ import com.itchain.samplemsa.samplemsa.product.domain.ProductService;
 import com.itchain.samplemsa.samplemsa.product.domain.dto.ProductDTO;
 import lombok.NoArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
 import java.util.Comparator;
@@ -16,7 +15,6 @@ import java.util.List;
 @Service
 public class ProductApplicationServiceImpl implements ProductApplicationService {
 
-    //TODO Api-gateway를 가지고있지 않고 URL로 ...
     @Autowired
     private ProductRepository productRepository;
 
@@ -54,22 +52,23 @@ public class ProductApplicationServiceImpl implements ProductApplicationService 
         productRepository.save(product);
     }
 
-    public List<ProductDTO> getBestProduct(int num, int index) {
+    public List<ProductDTO> getBestProducts(int num, int index) {
+        // index 는 페이지 index 1부터 시작한다고 가정
         List<ProductDTO> productDTOList = productService.getAllProducts();
         productDTOList.sort(Comparator.comparingInt(ProductDTO::getSales));
-        if (productDTOList.size() > (index + 1) * num){
-            return productDTOList.subList(index * num , (index + 1) + num);
+        if (productDTOList.size() > index * num){
+            return productDTOList.subList((index - 1) * num , index * num);
         }
-        return productDTOList.subList(index * num, productDTOList.size());
+        return productDTOList.subList((index - 1) * num, productDTOList.size());
     }
 
-    public List<ProductDTO> getProductSortByProductName(int num, int index){
+    public List<ProductDTO> getProductsSortByProductName(int num, int index){
         List<ProductDTO> productDTOList = productService.getAllProducts();
         productDTOList.sort(Comparator.comparing(ProductDTO::getProductName));
-        if (productDTOList.size() > (index + 1) * num){
-            return productDTOList.subList(index * num , (index + 1) + num);
+        if (productDTOList.size() > index * num){
+            return productDTOList.subList((index - 1) * num , index * num);
         }
-        return productDTOList.subList(index * num, productDTOList.size());
+        return productDTOList.subList((index - 1) * num, productDTOList.size());
     }
 
 }
