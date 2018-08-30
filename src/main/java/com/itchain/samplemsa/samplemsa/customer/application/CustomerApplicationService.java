@@ -39,11 +39,12 @@ public class CustomerApplicationService {
         return newCustomer;
     }
 
-    public void withdrawCustomer(String id, String pw) {
+    public CustomerInfo withdrawCustomer(String id, String pw) {
         CustomerInfo customer = customerRepository.findById(id);
         customer.removeCustomerInfo(id, pw);
 
         customerRepository.save(customer);
+        return customer;
     }
 
     public CustomerInfo updateCustomer(String id, String pw, String name, String address) {
