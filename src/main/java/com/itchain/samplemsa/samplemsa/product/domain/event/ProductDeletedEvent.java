@@ -4,13 +4,13 @@ import com.itchain.samplemsa.samplemsa.common.Event;
 
 public class ProductDeletedEvent implements Event {
 
-    String productId;
+    String id;
     public ProductDeletedEvent(String productId){
-        this.productId = productId;
+        this.id = productId;
     }
     @Override
     public String getID() {
-        return productId;
+        return id;
     }
 
 }

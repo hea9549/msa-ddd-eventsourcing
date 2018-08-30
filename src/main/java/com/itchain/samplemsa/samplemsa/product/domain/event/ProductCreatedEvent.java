@@ -24,6 +24,6 @@ public class ProductCreatedEvent implements Event {
 
     @Override
     public String getID() {
-        return null;
+        return id;
     }
 }
