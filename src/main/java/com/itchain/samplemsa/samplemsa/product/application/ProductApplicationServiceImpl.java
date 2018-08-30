@@ -57,7 +57,7 @@ public class ProductApplicationServiceImpl implements ProductApplicationService 
         List<ProductDTO> productDTOList = productService.getAllProducts();
         productDTOList.sort(Comparator.comparingInt(ProductDTO::getSales));
         if (productDTOList.size() > index * num){
-            return productDTOList.subList((index - 1) * num , index * num);
+            return productDTOList.subList((index - 1) * num , index * num - 1);
         }
         return productDTOList.subList((index - 1) * num, productDTOList.size());
     }
@@ -66,7 +66,7 @@ public class ProductApplicationServiceImpl implements ProductApplicationService 
         List<ProductDTO> productDTOList = productService.getAllProducts();
         productDTOList.sort(Comparator.comparing(ProductDTO::getProductName));
         if (productDTOList.size() > index * num){
-            return productDTOList.subList((index - 1) * num , index * num);
+            return productDTOList.subList((index - 1) * num , index * num - 1);
         }
         return productDTOList.subList((index - 1) * num, productDTOList.size());
     }
