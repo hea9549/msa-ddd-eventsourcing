@@ -43,9 +43,9 @@ public class OrderController {
     }
 
     @RequestMapping(value = "/trades", method = RequestMethod.GET)
-    public List<Order> getOrderListByCustomerId(@RequestParam("customer") String customerId) {
+    public List<Order> getOrderListByCustomerId(@RequestParam("buyer") String buyerId) {
 
-        return orderProjectionRepository.getOrderListByBuyerId(customerId);
+        return orderProjectionRepository.getOrderListByBuyerId(buyerId);
     }
 
 
