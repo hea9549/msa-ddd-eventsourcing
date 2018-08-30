@@ -7,15 +7,15 @@ import lombok.Getter;
 @Getter
 public class ProductStockChangedEvent implements Event {
 
-    String aggregateId;
+    String id;
     int stock;
-    public ProductStockChangedEvent(String aggregateId, int stock){
-        this.aggregateId = aggregateId;
+    public ProductStockChangedEvent(String productId, int stock){
+        this.id = productId;
         this.stock = stock;
     }
     @Override
     public String getID() {
-        return null;
+        return id;
     }
 
 }

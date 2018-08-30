@@ -22,6 +22,7 @@ public class CustomerController {
     public CustomerInfo registerCustomer(@RequestBody CustomerInfoDTO customerInfo) {
         CustomerInfo newCustomer = customerService.registerCustomer(customerInfo.getId(), customerInfo.getPw(), customerInfo.getName(), customerInfo.getAddress());
         return newCustomer;
+
     }
 
     @RequestMapping(value = "/customers/remove-customer/{customerInfo}", method = RequestMethod.POST)

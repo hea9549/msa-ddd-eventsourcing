@@ -36,7 +36,7 @@ public class Product extends Aggregate {
     }
 
     public void soldProduct(int num) {
-        if (stock < num && id != null) {
+        if (stock > num && id != null) {
             ProductStockChangedEvent stockChangedEvent = new ProductStockChangedEvent(id, stock - num);
             ProductSalesChangedEvent salesChangedEvent = new ProductSalesChangedEvent(id, sales + num);
             this.apply(stockChangedEvent);
@@ -61,13 +61,13 @@ public class Product extends Aggregate {
 
     public void updateProduct(String productName, String description, int price) {
         if (id != null) {
-            ProductUpdateEvent productUpdateEvent = new ProductUpdateEvent(productName, description, price);
+            ProductUpdateEvent productUpdateEvent = new ProductUpdateEvent(id, productName, description, price);
             this.apply(productUpdateEvent);
         }
     }
 
     @OnEvent
-    private void handleCreatedEvent(ProductCreatedEvent event) {
+    private void onProductCreatedEvent(ProductCreatedEvent event) {
 
         this.id = event.getID();
         this.productName = event.getProductName();
@@ -78,7 +78,7 @@ public class Product extends Aggregate {
     }
 
     @OnEvent
-    private void handleDeleteEvent(ProductDeletedEvent event) {
+    private void onProductDeleteEvent(ProductDeletedEvent event) {
         this.id = null;
         this.productName = null;
         this.description = null;
@@ -88,20 +88,20 @@ public class Product extends Aggregate {
     }
 
     @OnEvent
-    public void handleUpdateEvent(ProductUpdateEvent event) {
+    public void onProductUpdateEvent(ProductUpdateEvent event) {
         this.productName = event.getProductName();
         this.description = event.getDescription();
         this.price = event.getPrice();
     }
 
     @OnEvent
-    private void handleSoldEvent(ProductStockChangedEvent event) {
+    private void onProductSoldEvent(ProductStockChangedEvent event) {
         this.stock = event.getStock();
     }
 
     @OnEvent
-    private void handleSalesEvent(ProductSalesChangedEvent event) {
-        this.stock = event.getSales();
+    private void onProductChangeSalesEvent(ProductSalesChangedEvent event) {
+        this.sales = event.getSales();
     }
 
 

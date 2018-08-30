@@ -5,11 +5,13 @@ import lombok.Getter;
 
 @Getter
 public class ProductUpdateEvent implements Event {
+    private String id;
     private String productName;
     private String description;
     private int price;
 
-    public ProductUpdateEvent(String productName, String description, int price) {
+    public ProductUpdateEvent(String productId, String productName, String description, int price) {
+        this.id = productId;
         this.productName = productName;
         this.description = description;
         this.price = price;
@@ -17,6 +19,6 @@ public class ProductUpdateEvent implements Event {
 
     @Override
     public String getID() {
-        return null;
+        return id;
     }
 }
