@@ -13,8 +13,8 @@ public class ProductCreatedEvent implements Event {
     private int stock;
     private int sales;
 
-    public ProductCreatedEvent(String id, String productName, String description, int price, int stock, int sales) {
-        this.id = id;
+    public ProductCreatedEvent(String productId, String productName, String description, int price, int stock, int sales) {
+        this.id = productId;
         this.productName = productName;
         this.description = description;
         this.price = price;

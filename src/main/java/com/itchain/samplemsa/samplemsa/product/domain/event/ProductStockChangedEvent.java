@@ -9,8 +9,8 @@ public class ProductStockChangedEvent implements Event {
 
     String id;
     int stock;
-    public ProductStockChangedEvent(String aggregateId, int stock){
-        this.id = aggregateId;
+    public ProductStockChangedEvent(String productId, int stock){
+        this.id = productId;
         this.stock = stock;
     }
     @Override
