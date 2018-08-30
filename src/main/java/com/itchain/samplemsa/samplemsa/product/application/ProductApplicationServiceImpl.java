@@ -1,12 +1,15 @@
-package com.itchain.samplemsa.samplemsa.product.service;
+package com.itchain.samplemsa.samplemsa.product.application;
 
 import com.itchain.samplemsa.samplemsa.product.ProductRepository;
 import com.itchain.samplemsa.samplemsa.product.domain.Product;
+import com.itchain.samplemsa.samplemsa.product.domain.ProductService;
 import com.itchain.samplemsa.samplemsa.product.domain.dto.ProductDTO;
 import lombok.NoArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
+import java.util.Comparator;
 import java.util.List;
 
 @NoArgsConstructor
@@ -16,6 +19,9 @@ public class ProductApplicationServiceImpl implements ProductApplicationService 
     //TODO Api-gateway를 가지고있지 않고 URL로 ...
     @Autowired
     private ProductRepository productRepository;
+
+    @Autowired
+    private ProductService productService;
 
     public void addProduct(String productId, String productName,
                            String description, int price, int stock) {
@@ -42,28 +48,28 @@ public class ProductApplicationServiceImpl implements ProductApplicationService 
         productRepository.save(product);
     }
 
-    public void addProductStock(String productId, int additionalStockNum){
+    public void addProductStock(String productId, int additionalStockNum) {
         Product product = productRepository.findById(productId);
         product.addProductStock(additionalStockNum);
         productRepository.save(product);
     }
 
-    public List<ProductDTO> getBestProduct(int num) {
-        //TODO APi-gateway를 통해 sales가 가장 우수한 product들을 num 개수많큼 받아옴
-        return null;
+    public List<ProductDTO> getBestProduct(int num, int index) {
+        List<ProductDTO> productDTOList = productService.getAllProducts();
+        productDTOList.sort(Comparator.comparingInt(ProductDTO::getSales));
+        if (productDTOList.size() > (index + 1) * num){
+            return productDTOList.subList(index * num , (index + 1) + num);
+        }
+        return productDTOList.subList(index * num, productDTOList.size());
     }
 
-    public List<ProductDTO> getProducts() {
-        //TODO APi-gateway를 통해 모든 프로덕트의 리스트를 받아옴
-        return null;
+    public List<ProductDTO> getProductSortByProductName(int num, int index){
+        List<ProductDTO> productDTOList = productService.getAllProducts();
+        productDTOList.sort(Comparator.comparing(ProductDTO::getProductName));
+        if (productDTOList.size() > (index + 1) * num){
+            return productDTOList.subList(index * num , (index + 1) + num);
+        }
+        return productDTOList.subList(index * num, productDTOList.size());
     }
-
-    public List<ProductDTO> getProductsByCategory(String category) {
-        //TODO Api-gateway를 통해 category에 맞는 리스트를 받아옴
-        //Product를 ProductDTO에 맞게 변형
-
-        return null;
-    }
-
 
 }
