@@ -20,5 +20,4 @@ public class HttpProductAdapter implements ProductAdapter {
         return productInfo.getQuantity();
 
     }
-
 }
