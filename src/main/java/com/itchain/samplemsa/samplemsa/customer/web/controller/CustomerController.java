@@ -6,6 +6,7 @@ import com.itchain.samplemsa.samplemsa.customer.application.CustomerApplicationS
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+
 @RestController
 public class CustomerController {
     @Autowired
@@ -18,7 +19,7 @@ public class CustomerController {
     }
 
     @RequestMapping(value = "/customers/register-customer/{customerInfo}", method = RequestMethod.POST)
-    public void registerCustomer(@PathVariable CustomerInfoDTO customerInfo) {
+    public void registerCustomer(@RequestParam(required = true) CustomerInfoDTO customerInfo) {
         customerService.registerCustomer(customerInfo.getId(), customerInfo.getPw(), customerInfo.getName(), customerInfo.getAddress());
     }
 
