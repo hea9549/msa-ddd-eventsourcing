@@ -15,12 +15,13 @@ public class CustomerController {
     @RequestMapping(value = "/customers/{id}", method = RequestMethod.GET)
     @ResponseBody
     public CustomerInfo getCustomer(@PathVariable String id) {
-        return customerService.getCustomer(id);
+        return customerService.getCustomerByID(id);
     }
 
-    @RequestMapping(value = "/customers/register-customer/{customerInfo}", method = RequestMethod.POST)
-    public void registerCustomer(@PathVariable CustomerInfoDTO customerInfo) {
-        customerService.registerCustomer(customerInfo.getId(), customerInfo.getPw(), customerInfo.getName(), customerInfo.getAddress());
+    @RequestMapping(value = "/customers/register-customer", method = RequestMethod.POST)
+    public CustomerInfo registerCustomer(@RequestBody CustomerInfoDTO customerInfo) {
+        CustomerInfo newCustomer = customerService.registerCustomer(customerInfo.getId(), customerInfo.getPw(), customerInfo.getName(), customerInfo.getAddress());
+        return newCustomer;
     }
 
     @RequestMapping(value = "/customers/remove-customer/{customerInfo}", method = RequestMethod.POST)

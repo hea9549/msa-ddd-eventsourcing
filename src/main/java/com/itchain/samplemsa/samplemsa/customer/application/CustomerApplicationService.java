@@ -7,9 +7,9 @@ import com.itchain.samplemsa.samplemsa.customer.domain.TradeService;
 import com.itchain.samplemsa.samplemsa.customer.domain.exception.DuplicatedIDException;
 import com.itchain.samplemsa.samplemsa.customer.CustomerRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 
-@Component
+@Service
 public class CustomerApplicationService {
     @Autowired
     private CustomerRepository customerRepository;
@@ -23,7 +23,7 @@ public class CustomerApplicationService {
     @Autowired
     private CustomerService customerService;
 
-    public CustomerInfo getCustomer(String id) {
+    public CustomerInfo getCustomerByID(String id) {
         return customerRepository.findById(id);
     }
 
