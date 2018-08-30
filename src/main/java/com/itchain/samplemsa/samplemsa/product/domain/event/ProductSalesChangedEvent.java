@@ -5,11 +5,11 @@ import com.itchain.samplemsa.samplemsa.common.Event;
 public class ProductSalesChangedEvent implements Event {
 
 
-    String productId;
+    String id;
     int sales;
 
     public ProductSalesChangedEvent(String productId, int sales) {
-        this.productId = productId;
+        this.id = productId;
         this.sales = sales;
     }
     public int getSales(){
@@ -18,6 +18,6 @@ public class ProductSalesChangedEvent implements Event {
 
     @Override
     public String getID() {
-        return null;
+        return id;
     }
 }

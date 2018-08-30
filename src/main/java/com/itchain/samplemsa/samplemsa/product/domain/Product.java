@@ -36,7 +36,7 @@ public class Product extends Aggregate {
     }
 
     public void soldProduct(int num) {
-        if (stock < num && id != null) {
+        if (stock > num && id != null) {
             ProductStockChangedEvent stockChangedEvent = new ProductStockChangedEvent(id, stock - num);
             ProductSalesChangedEvent salesChangedEvent = new ProductSalesChangedEvent(id, sales + num);
             this.apply(stockChangedEvent);
@@ -61,7 +61,7 @@ public class Product extends Aggregate {
 
     public void updateProduct(String productName, String description, int price) {
         if (id != null) {
-            ProductUpdateEvent productUpdateEvent = new ProductUpdateEvent(productName, description, price);
+            ProductUpdateEvent productUpdateEvent = new ProductUpdateEvent(id, productName, description, price);
             this.apply(productUpdateEvent);
         }
     }
@@ -101,7 +101,7 @@ public class Product extends Aggregate {
 
     @OnEvent
     private void onProductChangeSalesEvent(ProductSalesChangedEvent event) {
-        this.stock = event.getSales();
+        this.sales = event.getSales();
     }
 
 

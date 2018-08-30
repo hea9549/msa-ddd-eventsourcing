@@ -1,8 +1,6 @@
-package com.itchain.samplemsa.samplemsa.product.port.adapter.service;
+package com.itchain.samplemsa.samplemsa.product.domain;
 
 import com.itchain.samplemsa.samplemsa.product.ProductProjectionRepository;
-import com.itchain.samplemsa.samplemsa.product.domain.Product;
-import com.itchain.samplemsa.samplemsa.product.domain.ProductService;
 import com.itchain.samplemsa.samplemsa.product.domain.dto.ProductDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

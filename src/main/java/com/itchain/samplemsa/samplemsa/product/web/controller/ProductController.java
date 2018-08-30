@@ -19,7 +19,7 @@ public class ProductController {
     @Autowired
     ProductApplicationServiceImpl productApplicationService;
 
-    @RequestMapping(value = "/product/addProduct/{productId}/{productName}/{description}/{price}/{stock}", method = RequestMethod.PUT)
+    @RequestMapping(value = "/product/addProduct/{productId}/{productName}/{description}/{price}/{stock}", method = RequestMethod.POST)
     public void addProduct(@PathVariable String productId, @PathVariable String productName,
                            @PathVariable String description, @PathVariable int price, @PathVariable int stock) {
         productApplicationService.addProduct(productId, productName, description, price, stock);
@@ -30,31 +30,31 @@ public class ProductController {
         productApplicationService.deleteProduct(productId);
     }
 
-    @RequestMapping(value = "/product/soldProduct/{productId}/{soldNum}", method = RequestMethod.POST)
+    @RequestMapping(value = "/product/soldProduct/{productId}/{soldNum}", method = RequestMethod.PUT)
     public void soldProduct(@PathVariable String productId, @PathVariable int soldNum) {
         productApplicationService.soldProduct(productId, soldNum);
     }
 
-    @RequestMapping(value = "/product/updateProduct/{productId}/{productName}/{description}/{price}", method = RequestMethod.POST)
+    @RequestMapping(value = "/product/updateProduct/{productId}/{productName}/{description}/{price}", method = RequestMethod.PUT)
     public void updateProduct(@PathVariable String productId, @PathVariable String productName,
                               @PathVariable String description, @PathVariable int price) {
         productApplicationService.updateProduct(productId, productName, description, price);
 
     }
 
-    @RequestMapping(value = "/product/addStock/{productId}/{additionalStockNum}", method = RequestMethod.POST)
+    @RequestMapping(value = "/product/addStock/{productId}/{additionalStockNum}", method = RequestMethod.PUT)
     public void addStock(@PathVariable String productId,@PathVariable int additionalStockNum) {
         productApplicationService.addProductStock(productId, additionalStockNum);
     }
 
-    @RequestMapping(value = "/product/getBestProduct/{num}", method = RequestMethod.GET)
-    public List<ProductDTO> getBestProduct(@PathVariable int num) {
-        return productApplicationService.getBestProduct(num);
+    @RequestMapping(value = "/product/getBestProducts/{num}/{index}", method = RequestMethod.GET)
+    public List<ProductDTO> getBestProducts(@PathVariable int num, @PathVariable int index) {
+        return productApplicationService.getBestProducts(num, index);
     }
 
-    @RequestMapping(value = "/product/getProductSortByProductName/{num}", method = RequestMethod.GET)
-    public List<ProductDTO> getProductSortByProductName(@PathVariable int num){
-        return productApplicationService.getProductSortByProductName(num);
+    @RequestMapping(value = "/product/getProductSortByProductName/{num}/{index}", method = RequestMethod.GET)
+    public List<ProductDTO> getProductSortByProductName(@PathVariable int num, @PathVariable int index){
+        return productApplicationService.getProductsSortByProductName(num, index);
     }
 
 }
