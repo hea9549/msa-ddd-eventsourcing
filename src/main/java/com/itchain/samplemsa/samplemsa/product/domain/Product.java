@@ -61,7 +61,7 @@ public class Product extends Aggregate {
 
     public void updateProduct(String productName, String description, int price) {
         if (id != null) {
-            ProductUpdateEvent productUpdateEvent = new ProductUpdateEvent(productName, description, price);
+            ProductUpdateEvent productUpdateEvent = new ProductUpdateEvent(id, productName, description, price);
             this.apply(productUpdateEvent);
         }
     }

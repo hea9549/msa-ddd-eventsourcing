@@ -11,6 +11,6 @@ public interface ProductApplicationService {
     void soldProduct(String productId, int num);
     void updateProduct(String productId, String productName, String description, int price);
     void addProductStock(String productId, int additionalStockNum);
-    List<ProductDTO> getBestProduct(int num, int index);
-    List<ProductDTO> getProductSortByProductName(int num, int index);
+    List<ProductDTO> getBestProducts(int num, int index);
+    List<ProductDTO> getProductsSortByProductName(int num, int index);
 }

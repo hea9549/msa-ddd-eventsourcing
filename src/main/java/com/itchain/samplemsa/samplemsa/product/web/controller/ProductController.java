@@ -47,14 +47,14 @@ public class ProductController {
         productApplicationService.addProductStock(productId, additionalStockNum);
     }
 
-    @RequestMapping(value = "/product/getBestProduct/{num}/{index}", method = RequestMethod.GET)
-    public List<ProductDTO> getBestProduct(@PathVariable int num, @PathVariable int index) {
-        return productApplicationService.getBestProduct(num, index);
+    @RequestMapping(value = "/product/getBestProducts/{num}/{index}", method = RequestMethod.GET)
+    public List<ProductDTO> getBestProducts(@PathVariable int num, @PathVariable int index) {
+        return productApplicationService.getBestProducts(num, index);
     }
 
     @RequestMapping(value = "/product/getProductSortByProductName/{num}/{index}", method = RequestMethod.GET)
     public List<ProductDTO> getProductSortByProductName(@PathVariable int num, @PathVariable int index){
-        return productApplicationService.getProductSortByProductName(num, index);
+        return productApplicationService.getProductsSortByProductName(num, index);
     }
 
 }

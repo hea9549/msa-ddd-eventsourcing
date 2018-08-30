@@ -1,4 +1,4 @@
-package com.itchain.samplemsa.samplemsa.product.port.adapter.service;
+package com.itchain.samplemsa.samplemsa.product.domain;
 
 import com.itchain.samplemsa.samplemsa.product.ProductProjectionRepository;
 import com.itchain.samplemsa.samplemsa.product.domain.Product;
