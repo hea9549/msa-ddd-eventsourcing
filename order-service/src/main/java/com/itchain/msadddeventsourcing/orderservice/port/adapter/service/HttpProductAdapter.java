@@ -16,6 +16,6 @@ public class HttpProductAdapter implements ProductAdapter {
 
     public int getStockByProductId(String productId) {
         ProductInfoDTO productInfo = productRestTemplate.getForObject("/products/"+productId,ProductInfoDTO.class);
-        return productInfo.getQuantity();
+        return productInfo.getStock();
     }
 }
