@@ -6,9 +6,7 @@ import com.itchain.msadddeventsourcing.productservice.domain.Product;
 import com.itchain.msadddeventsourcing.productservice.domain.dto.ProductDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-
 import java.util.List;
-
 
 @RestController
 public class ProductController {
@@ -31,7 +29,7 @@ public class ProductController {
 
     @RequestMapping(value = "/products/{productId}", method = RequestMethod.PATCH)
     public void updateProduct(@PathVariable String productId, @RequestBody ProductDTO productDTO) {
-        productApplicationService.updateProduct(productId, productDTO.getProductName(), productDTO.getDescription(), productDTO.getPrice());
+        productApplicationService.updateProduct(productId, productDTㅔO.getProductName(), productDTO.getDescription(), productDTO.getPrice());
     }
 
     @RequestMapping(value = "/products/stocks-sales/{productId}", method = RequestMethod.PATCH)
