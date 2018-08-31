@@ -20,7 +20,7 @@ public class HttpDeliveryAdapter implements DeliveryAdapter {
         if (deliveryInfoDTO.getId() == null || deliveryInfoDTO.getStatus() == null) {
             throw new IllegalArgumentException("deliveryInfo invalid");
         }
-        
+
         return deliveryInfoDTO.getStatus();
     }
 }
