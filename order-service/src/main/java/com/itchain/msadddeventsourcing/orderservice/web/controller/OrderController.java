@@ -18,13 +18,13 @@ public class OrderController {
     @Autowired
     OrderQueryService orderQueryService;
 
-    @RequestMapping(value = "/trades/{id}", method = RequestMethod.GET)
+    @RequestMapping(value = "/orders/{id}", method = RequestMethod.GET)
     public Order getTradeById(@PathVariable String id) {
         return orderQueryService.getOrderById(id);
     }
 
 
-    @RequestMapping(value = "/trades", method = RequestMethod.POST)
+    @RequestMapping(value = "/orders", method = RequestMethod.POST)
     public Order createTrade(@RequestBody CreateOrderCommand createOrderCommand) {
         Order order = tradeApplicationService.addTrade(createOrderCommand.getProductId(), createOrderCommand.getBuyerId(), createOrderCommand.getSignedDate(), createOrderCommand.getPrice(), createOrderCommand.getQuantity());
         if (order == null) {
@@ -34,13 +34,13 @@ public class OrderController {
         return order;
     }
 
-    @RequestMapping(value = "/trades/{id}", method = RequestMethod.DELETE)
+    @RequestMapping(value = "/orders/{id}", method = RequestMethod.DELETE)
     public Order cancelTrade(@PathVariable String id) {
         Order order = tradeApplicationService.cancelTrade(id);
         return order;
     }
 
-    @RequestMapping(value = "/trades", method = RequestMethod.GET)
+    @RequestMapping(value = "/orders", method = RequestMethod.GET)
     public List<Order> getOrderListByCustomerId(@RequestParam("buyer") String buyerId) {
         return orderQueryService.getOrderListByBuyerId(buyerId);
     }
