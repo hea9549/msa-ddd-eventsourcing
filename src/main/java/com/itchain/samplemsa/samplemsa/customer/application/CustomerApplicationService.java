@@ -2,14 +2,14 @@ package com.itchain.samplemsa.samplemsa.customer.application;
 
 import com.itchain.samplemsa.samplemsa.customer.domain.CustomerInfo;
 import com.itchain.samplemsa.samplemsa.customer.domain.CustomerInfoService;
-import com.itchain.samplemsa.samplemsa.customer.domain.CustomerService;
-import com.itchain.samplemsa.samplemsa.customer.domain.TradeService;
+import com.itchain.samplemsa.samplemsa.customer.domain.CustomerIDService;
+import com.itchain.samplemsa.samplemsa.customer.domain.CustomerPriceService;
 import com.itchain.samplemsa.samplemsa.customer.domain.exception.DuplicatedIDException;
 import com.itchain.samplemsa.samplemsa.customer.CustomerRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 
-@Component
+@Service
 public class CustomerApplicationService {
     @Autowired
     private CustomerRepository customerRepository;
@@ -18,17 +18,17 @@ public class CustomerApplicationService {
     private CustomerInfoService customerInfoService;
 
     @Autowired
-    private TradeService tradeService;
+    private CustomerPriceService customerPriceService;
 
     @Autowired
-    private CustomerService customerService;
+    private CustomerIDService customerIDService;
 
-    public CustomerInfo getCustomer(String id) {
+    public CustomerInfo getCustomerByID(String id) {
         return customerRepository.findById(id);
     }
 
     public CustomerInfo registerCustomer(String id, String pw, String name, String address) {
-        if (customerService.checkDuplicatedID(id)) {
+        if (customerIDService.checkDuplicatedID(id)) {
             throw new DuplicatedIDException();
         }
 
@@ -39,11 +39,12 @@ public class CustomerApplicationService {
         return newCustomer;
     }
 
-    public void withdrawCustomer(String id, String pw) {
+    public CustomerInfo withdrawCustomer(String id, String pw) {
         CustomerInfo customer = customerRepository.findById(id);
         customer.removeCustomerInfo(id, pw);
 
         customerRepository.save(customer);
+        return customer;
     }
 
     public CustomerInfo updateCustomer(String id, String pw, String name, String address) {
@@ -55,7 +56,7 @@ public class CustomerApplicationService {
     }
 
     public int getCustomerPoint(String id) {
-        int spentPrice = tradeService.getPriceOfSignedTrades(id);
+        int spentPrice = customerPriceService.getPriceOfSignedTrades(id);
 
         return spentPrice / 10;
     }

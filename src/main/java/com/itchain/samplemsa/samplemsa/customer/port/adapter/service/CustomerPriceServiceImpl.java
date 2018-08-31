@@ -1,6 +1,6 @@
 package com.itchain.samplemsa.samplemsa.customer.port.adapter.service;
 
-import com.itchain.samplemsa.samplemsa.customer.domain.TradeService;
+import com.itchain.samplemsa.samplemsa.customer.domain.CustomerPriceService;
 import com.itchain.samplemsa.samplemsa.customer.domain.TradeStatus;
 import com.itchain.samplemsa.samplemsa.customer.domain.dto.TradeInfoDTO;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,7 +9,7 @@ import org.springframework.stereotype.Component;
 import java.util.List;
 
 @Component
-public class TradeServiceImpl implements TradeService {
+public class CustomerPriceServiceImpl implements CustomerPriceService {
     @Autowired
     private TradeAdapter tradeAdapter;
 

@@ -1,8 +1,8 @@
 package com.itchain.samplemsa.samplemsa.Order;
 
 
-import com.itchain.samplemsa.samplemsa.customer.domain.CustomerService;
-import com.itchain.samplemsa.samplemsa.mock.mockCustomerService;
+import com.itchain.samplemsa.samplemsa.customer.domain.CustomerIDService;
+import com.itchain.samplemsa.samplemsa.mock.MockCustomerIDService;
 import com.itchain.samplemsa.samplemsa.mock.mockDeliveryService;
 import com.itchain.samplemsa.samplemsa.mock.mockProductService;
 import com.itchain.samplemsa.samplemsa.order.domain.DeliveryService;
@@ -31,6 +31,6 @@ public class ServiceConfiguration {
 
     @Bean
     @Primary
-    public CustomerService customerService() { return Mockito.mock(mockCustomerService.class);}
+    public CustomerIDService customerService() { return Mockito.mock(MockCustomerIDService.class);}
 
 }
