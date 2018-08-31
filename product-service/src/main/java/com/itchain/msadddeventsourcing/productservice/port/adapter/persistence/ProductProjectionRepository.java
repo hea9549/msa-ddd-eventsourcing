@@ -48,7 +48,7 @@ public class ProductProjectionRepository {
         this.productList.add(newProduct);
     }
 
-    private Product getProductById(String productId) {
+    public Product getProductById(String productId) {
         return productList.stream().filter(product -> productId.equals(product.getID())).findAny().orElse(null);
     }
 

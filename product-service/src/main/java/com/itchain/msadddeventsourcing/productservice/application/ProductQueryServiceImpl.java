@@ -42,4 +42,9 @@ public class ProductQueryServiceImpl implements ProductQueryService{
     public List<Product> getProductList() {
         return this.productProjectionRepository.getProductList();
     }
+
+    @Override
+    public Product getProductById(String productId){
+        return this.productProjectionRepository.getProductById(productId);
+    }
 }

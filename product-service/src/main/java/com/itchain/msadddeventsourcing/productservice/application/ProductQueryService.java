@@ -9,4 +9,5 @@ public interface ProductQueryService {
     List<Product> getBestProducts(int num, int index);
     List<Product> getProductsSortByProductName(int num, int index);
     List<Product> getProductList();
+    Product getProductById(String productId);
 }
