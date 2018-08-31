@@ -15,25 +15,25 @@ public class CustomerController {
     @RequestMapping(value = "/customers/{id}", method = RequestMethod.GET)
     @ResponseBody
     public CustomerInfo getCustomer(@PathVariable String id) {
-        return customerService.getCustomer(id);
+        return customerService.getCustomerByID(id);
     }
 
-    @RequestMapping(value = "/customers/register-customer/{customerInfo}", method = RequestMethod.POST)
-    public void registerCustomer(@RequestParam(required = true) CustomerInfoDTO customerInfo) {
-        customerService.registerCustomer(customerInfo.getId(), customerInfo.getPw(), customerInfo.getName(), customerInfo.getAddress());
+    @RequestMapping(value = "/customers", method = RequestMethod.POST)
+    public CustomerInfo registerCustomer(@RequestBody CustomerInfoDTO customerInfo) {
+        return customerService.registerCustomer(customerInfo.getId(), customerInfo.getPw(), customerInfo.getName(), customerInfo.getAddress());
     }
 
-    @RequestMapping(value = "/customers/remove-customer/{customerInfo}", method = RequestMethod.POST)
-    public void withdrawCustomer(@PathVariable CustomerInfoDTO customerInfo) {
-        customerService.withdrawCustomer(customerInfo.getId(), customerInfo.getPw());
+    @RequestMapping(value = "/customers/{id}", method = RequestMethod.DELETE)
+    public CustomerInfo withdrawCustomer(@PathVariable String id, @RequestBody CustomerInfoDTO customerInfo) {
+        return customerService.withdrawCustomer(id, customerInfo.getPw());
     }
 
-    @RequestMapping(value = "/customers/edit-customer/{customerInfo}", method = RequestMethod.POST)
-    public void updateCustomer(@PathVariable CustomerInfoDTO customerInfo) {
-        customerService.updateCustomer(customerInfo.getId(), customerInfo.getPw(), customerInfo.getName(), customerInfo.getAddress());
+    @RequestMapping(value = "/customers/{id}", method = RequestMethod.PUT)
+    public CustomerInfo updateCustomer(@PathVariable String id, @RequestBody CustomerInfoDTO customerInfo) {
+        return customerService.updateCustomer(customerInfo.getId(), customerInfo.getPw(), customerInfo.getName(), customerInfo.getAddress());
     }
 
-    @RequestMapping(value = "/customers/get-point/{id}", method = RequestMethod.POST)
+    @RequestMapping(value = "/customers/{id}/point", method = RequestMethod.GET)
     public int getCustomerPoint(@PathVariable String id) {
         return customerService.getCustomerPoint(id);
     }
