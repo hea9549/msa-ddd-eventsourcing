@@ -16,7 +16,15 @@ public class HttpDeliveryAdapter implements DeliveryAdapter {
     RestTemplate deliveryRestTemplate;
 
     public DeliverStatus getDeliveryStatusByTradeId(String id) {
-        DeliveryInfoDTO deliveryInfoDTO = deliveryRestTemplate.getForObject("/deliverys",DeliveryInfoDTO.class);
-        return deliveryInfoDTO.getStatus();
+        try {
+            DeliveryInfoDTO deliveryInfoDTO = deliveryRestTemplate.getForObject("/deliverys/" + id, DeliveryInfoDTO.class);
+            if (deliveryInfoDTO.getId() == null || deliveryInfoDTO.getStatus() == null) {
+                throw new IllegalArgumentException("deliveryInfo invalid");
+            }
+            return deliveryInfoDTO.getStatus();
+
+        } catch (Exception e) {
+            throw e;
+        }
     }
 }

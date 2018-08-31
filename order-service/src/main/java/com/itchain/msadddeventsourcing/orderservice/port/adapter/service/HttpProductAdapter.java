@@ -15,7 +15,23 @@ public class HttpProductAdapter implements ProductAdapter {
     RestTemplate productRestTemplate;
 
     public int getStockByProductId(String productId) {
-        ProductInfoDTO productInfo = productRestTemplate.getForObject("/products/"+productId,ProductInfoDTO.class);
-        return productInfo.getStock();
+
+        try {
+            ProductInfoDTO productInfo = productRestTemplate.getForObject("/products/"+productId,ProductInfoDTO.class);
+
+            if (productInfo.getProductId() == null ) {
+                throw new IllegalArgumentException("productInfo invalid");
+            }
+
+            return productInfo.getStock();
+
+        } catch (Exception e) {
+
+            throw e;
+
+        }
+
+
+
     }
 }
