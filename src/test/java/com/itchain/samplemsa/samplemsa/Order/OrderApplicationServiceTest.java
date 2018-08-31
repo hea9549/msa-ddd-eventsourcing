@@ -33,7 +33,7 @@ public class OrderApplicationServiceTest {
     private DeliveryService deliveryService;
 
     @Test
-    public void tradeApplicationService() throws Exception {
+    public void OrderApplicationService() throws Exception {
 
         //given
         String productId = "productId";
@@ -47,7 +47,7 @@ public class OrderApplicationServiceTest {
 
         //ADD TEST
 
-        //when : stock < request quantity
+        //when : stock < request stock
         Mockito.when(productService.getStockByProductId(productId)).thenReturn(0);
 
         Order order1 = tradeApplicationService.addTrade(productId,buyerId,signedDate,price,quantity);
@@ -55,7 +55,7 @@ public class OrderApplicationServiceTest {
         //then
         Assert.assertNull(order1);
 
-        //when : requested quantity <= stock
+        //when : requested stock <= stock
         Mockito.when(productService.getStockByProductId(productId)).thenReturn(1);
 
         Order order = tradeApplicationService.addTrade(productId, buyerId, signedDate, price, quantity);

@@ -55,14 +55,4 @@ public class OrderApplicationServiceImpl implements OrderApplicationService {
             return null;
         }
     }
-
-    public Order getTradeById(String id) {
-
-        Order order = orderRepository.findById(id);
-        if (order.getID() != null) {
-            return order;
-        } else {
-            throw null;
-        }
-    }
 }

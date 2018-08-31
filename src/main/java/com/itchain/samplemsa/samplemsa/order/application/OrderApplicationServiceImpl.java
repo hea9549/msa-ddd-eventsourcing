@@ -26,7 +26,6 @@ public class OrderApplicationServiceImpl implements OrderApplicationService {
 
         int stock = productService.getStockByProductId(productId);
 
-        // 재고가 남아있다면 저장
         if (validateService.IsAvailableToCreate(quantity, stock)) {
             Order order = new Order(productId, buyerId, signedDate, price, quantity);
             orderRepository.save(order);
@@ -64,9 +63,5 @@ public class OrderApplicationServiceImpl implements OrderApplicationService {
         } else {
             throw null;
         }
-
-
-
-
     }
 }

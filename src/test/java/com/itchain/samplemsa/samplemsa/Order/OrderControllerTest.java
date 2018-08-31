@@ -98,6 +98,9 @@ public class OrderControllerTest {
 
         String expected = "{productId:product03,buyerId:buyer03,signedDate:2018-01-01,price:10,quantity:10,status:CANCELED}";
 
+        System.out.println("test");
+        System.out.println(result.getResponse().getContentAsString());
+
         JSONAssert.assertEquals(expected,result.getResponse().getContentAsString(),false);
 
 

@@ -17,7 +17,7 @@ public class HttpProductAdapter implements ProductAdapter {
         RestTemplate restTemplate = new RestTemplate();
         ProductInfoDTO productInfo = restTemplate.getForObject(config.getPROTOCOL() + "://" + config.getHOST() + ":" + config.getPORT() + "/" + config.getSERVICE().get(0) + "/" + productId, ProductInfoDTO.class);
 
-        return productInfo.getQuantity();
+        return productInfo.getStock();
 
     }
 }
