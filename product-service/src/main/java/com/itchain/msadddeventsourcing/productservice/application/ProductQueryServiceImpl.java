@@ -14,28 +14,19 @@ public class ProductQueryServiceImpl implements ProductQueryService{
     @Autowired
     private ProductProjectionRepository productProjectionRepository;
 
-    public List<Product> getBestProducts(int num, int index) {
-        // index 는 페이지 index 1부터 시작한다고 가정
+    public List<ProductDTO> getBestProducts(int num) {
         List<Product> productList = productProjectionRepository.getProductList();
         productList.sort(Comparator.comparingInt(Product::getSales));
 
-        if (productList.size() > index * num){
-            return productList.subList((index - 1) * num , index * num - 1);
+        List<ProductDTO> tempList = new ArrayList();
+        for (int i = 0; i < productList.size(); i++){
+            tempList.add(new ProductDTO(productList.get(i)));
+        }
+        if (tempList.size() > num){
+            return tempList.subList(0, num - 1);
         }
 
-        return productList.subList((index - 1) * num, productList.size());
-    }
-
-    public List<Product> getProductsSortByProductName(int num, int index){
-
-        List<Product> productList = productProjectionRepository.getProductList();
-        productList.sort(Comparator.comparing(Product::getProductName));
-
-        if (productList.size() > index * num){
-            return productList.subList((index - 1) * num , index * num - 1);
-        }
-
-        return productList.subList((index - 1) * num, productList.size());
+        return tempList.subList(0, tempList.size());
     }
 
     @Override

@@ -42,9 +42,9 @@ public class ProductController {
         productApplicationService.addProductStock(productId, additionalStockNum);
     }
 
-    @RequestMapping(value = "/products/bests/{index}", method = RequestMethod.GET)
-    public List<Product> getBestProducts(@PathVariable int index, @RequestBody int num) {
-        return productQueryService.getBestProducts(num, index);
+    @RequestMapping(value = "/products/bests/", method = RequestMethod.GET)
+    public List<ProductDTO> getBestProducts(@RequestBody int num) {
+        return productQueryService.getBestProducts(num);
     }
 
     @RequestMapping(value = "/products", method = RequestMethod.GET)
