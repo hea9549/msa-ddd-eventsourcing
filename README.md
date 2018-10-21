@@ -12,8 +12,3 @@ To install, run the following commands
 git clone https://github.com/hea9549/msa-ddd-eventsourcing
 cd msa-ddd-eventsourcing
 ```
-
-To run this microservices, run the following commands
-```
-help!
-```
